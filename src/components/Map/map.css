@@ -1,9 +1,16 @@
 .map {
   display: inline-block;
   position: relative;
-  height: min-content;
-  width: min-content;
   margin: 10px;
+  height: 85vh;
+  width: 70vw;
+  border-radius: 25px;
+  border: solid 4px black;
+}
+
+.map-wrapper {
+  overflow: hidden;
+  justify-content: center;
 }
 
 .map-btn-container {
@@ -28,15 +35,6 @@
 .map-btn:hover {
   background: #b9b9b9;
   font-size: 1.001em;
-}
-
-.map-wrapper {
-  overflow: hidden;
-  justify-content: center;
-  height: auto;
-  width: auto;
-  border-radius: 25px;
-  border: solid 4px black;
 }
 
 .map-pin {

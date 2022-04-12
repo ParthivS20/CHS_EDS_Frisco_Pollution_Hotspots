@@ -1,23 +1,23 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Popup } from "react-map-gl";
 
 import "./map.css";
 
-export default function MapPopup(props) {
+export default function MapPopup({ location, closePopup, openPopup }) {
   return (
     <Popup
-      latitude={props.location.latitude}
-      longitude={props.location.longitude}
+      latitude={location.latitude}
+      longitude={location.longitude}
       anchor="top"
       onClose={() => {
-        props.closePopup();
+        closePopup();
       }}
       onOpen={() => {
-        props.openPopup(props.location);
+        openPopup(location);
       }}
       closeOnClick={false}
     >
-      {props.location.name}
+      {location.name}
     </Popup>
   );
 }

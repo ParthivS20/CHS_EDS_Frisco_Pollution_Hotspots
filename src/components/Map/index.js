@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
-import ReactMapGl, { Popup } from "react-map-gl";
+import ReactMapGl from "react-map-gl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowRotateRight,
-  faLayerGroup,
-  faRotateRight
-} from "@fortawesome/free-solid-svg-icons";
+import { faLayerGroup, faRotateRight } from "@fortawesome/free-solid-svg-icons";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 import LoadingScreen from "./LoadingScreen";
