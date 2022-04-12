@@ -11,20 +11,10 @@ export default function MapMarker(props) {
         key={props.location.name}
         latitude={props.location.latitude}
         longitude={props.location.longitude}
-        offsetTop={-25}
-        offsetLeft={-12.5}
-      >
-        <button
-          className="map-pin-btn"
-          onClick={(e) => {
-            e.preventDefault();
-            props.updateSelectedLocation(props.location);
-            console.log(props.location);
-          }}
-        >
-          <img src={mapPin} alt="map-pin" className="map-pin" />
-        </button>
-      </Marker>
+        anchor="bottom"
+        style={{ cursor: "pointer" }}
+        onClick={() => props.openPopup(props.location)}
+      ></Marker>
     </div>
   );
 }

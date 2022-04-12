@@ -1,5 +1,6 @@
 .map {
   display: inline-block;
+  position: relative;
   height: min-content;
   width: min-content;
   margin: 10px;
@@ -9,20 +10,24 @@
   position: absolute;
   display: flex;
   gap: 9px;
-  top: 5%;
-  right: 15%;
+  top: 2%;
+  right: 2%;
 }
 
 .map-btn {
-  border-radius: 3px;
-  border: solid 2px black;
+  border-radius: 5px;
+  border: solid 3px black;
   background-color: gray;
   color: white;
-  padding: 2px;
+  padding: 3px;
+  height: 30px;
+  width: 30px;
+  font-size: 14px;
 }
 
 .map-btn:hover {
   background: #b9b9b9;
+  font-size: 1.001em;
 }
 
 .map-wrapper {

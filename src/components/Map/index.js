@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import ReactMapGl from "react-map-gl";
+import ReactMapGl, { Popup } from "react-map-gl";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowRotateRight,
+  faLayerGroup,
+  faRotateRight
+} from "@fortawesome/free-solid-svg-icons";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 import LoadingScreen from "./LoadingScreen";
@@ -17,9 +23,14 @@ export default function Map() {
 
   const [viewPort, setViewPort] = useState(defaultViewport);
   const [selected, setSelected] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
   const [mapMode, setMapMode] = useState(true);
   const [loaded, setLoaded] = useState(false);
   const [locations, setLocations] = useState(null);
+
+  useEffect(() => {
+    console.log(showPopup);
+  }, [showPopup]);
 
   useEffect(() => {
     setLoaded(false);
@@ -42,11 +53,13 @@ export default function Map() {
       });
   }, []);
 
-  const resetViewport = () => {
-    setViewPort(defaultViewport);
+  const closePopup = () => {
+    setShowPopup(false);
+    setSelected(null);
   };
 
-  const updateLocation = (location) => {
+  const openPopup = (location) => {
+    setShowPopup(true);
     setSelected(location);
   };
 
@@ -66,12 +79,12 @@ export default function Map() {
         <div className="map-wrapper">
           <ReactMapGl
             {...viewPort}
-            onMove={(vP) => {
-              updateViewPort(vP);
+            onMove={(evt) => {
+              updateViewPort(evt.viewState);
             }}
             mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
             style={{
-              width: "85vw",
+              width: "70vw",
               height: "85vh"
             }}
             mapStyle={
@@ -83,18 +96,15 @@ export default function Map() {
             {locations &&
               locations.map((l) => {
                 return (
-                  <MapMarker
-                    key={l.name}
-                    location={l}
-                    updateSelectedLocation={updateLocation}
-                  />
+                  <MapMarker key={l.name} location={l} openPopup={openPopup} />
                 );
               })}
 
-            {selected && (
+            {showPopup && (
               <MapPopup
                 location={selected}
-                updateSelectedLocation={updateLocation}
+                openPopup={openPopup}
+                closePopup={closePopup}
               />
             )}
           </ReactMapGl>
@@ -106,10 +116,13 @@ export default function Map() {
             }}
             className="map-btn"
           >
-            Layer
+            <FontAwesomeIcon icon={faLayerGroup} />
           </button>
-          <button onClick={() => resetViewport} className="map-btn">
-            Reset
+          <button
+            onClick={() => updateViewPort(defaultViewport)}
+            className="map-btn"
+          >
+            <FontAwesomeIcon icon={faRotateRight} />
           </button>
         </div>
       </div>
