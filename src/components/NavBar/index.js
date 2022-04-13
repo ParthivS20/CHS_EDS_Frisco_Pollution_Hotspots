@@ -21,7 +21,7 @@ export default function NavBar() {
                     Contact
                 </NavLink>
             </NavMenu>
-            <NavBtn onClick={netlifyIdentity.open()}>
+            <NavBtn onClick={netlifyIdentity.open}>
                 Sign In
             </NavBtn>
         </Nav>
