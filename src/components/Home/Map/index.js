@@ -22,6 +22,9 @@ import MapboxWorker from 'worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker';
 // eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
 mapboxgl.workerClass = MapboxWorker;*/
 
+// eslint-disable-next-line import/no-webpack-loader-syntax
+import mapboxgl from '!mapbox-gl';
+
 export default function Map({loaded, locations}) {
   const defaultViewport = {
     latitude: 33.1499819,
