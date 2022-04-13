@@ -10,17 +10,14 @@ export default function NavBar() {
             </NavLink>
             <Bars />
             <NavMenu>
-                <NavLink to={'/about'} activestyle={''}>
-                    About
+                <NavLink to={'/Mission'} activestyle={''}>
+                    Mission
                 </NavLink>
-                <NavLink to={'/about1'} activestyle={''}>
-                    About
+                <NavLink to={'/Opportunities'} activestyle={''}>
+                    Opportunities
                 </NavLink>
-                <NavLink to={'/about2'} activestyle={''}>
-                    About
-                </NavLink>
-                <NavLink to={'/about3'} activestyle={''}>
-                    About
+                <NavLink to={'/Contact'} activestyle={''}>
+                    Contact
                 </NavLink>
             </NavMenu>
             <NavBtn activeStyle>

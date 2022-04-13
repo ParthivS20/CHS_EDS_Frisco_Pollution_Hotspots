@@ -48,7 +48,7 @@ export default function Map({loaded, locations}) {
                   }}
                   mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
                   style={{
-                    width: "70vw",
+                    width: "72vw",
                     height: "85vh"
                   }}
                   mapStyle={

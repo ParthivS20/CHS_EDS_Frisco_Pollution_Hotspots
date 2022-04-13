@@ -1,0 +1,63 @@
+.map-list-container {
+    overflow: hidden;
+    margin-right: 15px;
+    background-color: #a4ffb5;
+    width: 24vw;
+    padding: 7px 0 20px 7px;
+    border-radius: 10px;
+}
+
+.map-list-bar {
+    width: 95%;
+    border-bottom: solid 2px green;
+    margin-left: calc(5% / 2 - 4px);
+    margin-bottom: 8px;
+}
+
+.map-list-title {
+    margin: 10px;
+}
+
+.location-list {
+    overflow-y: scroll;
+    height: 72vh;
+}
+
+.list-location {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 7px 7px 7px 10px;
+    padding: 4px 4px 4px 7px;
+    border-radius: 10px;
+    height: 120px;
+    width: 94%;
+    transition-duration: 175ms;
+}
+
+.list-location:hover {
+    background-color: #15fc4b;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #a4ffb5;
+    border-radius: 12px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #15fc4b;
+    border-radius: 12px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #02881f;
+}
+

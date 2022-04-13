@@ -3,7 +3,7 @@
   position: relative;
   margin: 10px;
   height: calc(85vh + 7px);
-  width: calc(70vw + 10px);
+  width: calc(72vw + 5px);
   border-radius: 25px;
   border: solid 4px black;
   overflow: hidden;
@@ -51,7 +51,7 @@
   background-color: transparent;
   height: 25px;
   width: 25px;
-  padding: 0px 3px 2px 3px;
+  padding: 0 3px 2px 3px;
 }
 
 .map-pin-btn:hover {
