@@ -1,14 +1,23 @@
 import React, { useState } from "react";
 import ReactMapGl from "react-map-gl";
+import "mapbox-gl/dist/mapbox-gl.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLayerGroup, faHome } from "@fortawesome/free-solid-svg-icons";
-import "mapbox-gl/dist/mapbox-gl.css";
 
 import Loading from "./Loading";
 import MapMarker from "./MapMarker";
 import MapPopup from "./MapPopup";
 
 import "./map.css";
+
+// eslint-disable-next-line import/no-webpack-loader-syntax
+import mapboxgl from '!mapbox-gl';
+
+// The following is required to stop "npm build" from transpiling mapbox code.
+// notice the exclamation point in the import.
+// @ts-ignore
+// eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
 export default function Map({loaded, locations}) {
   const defaultViewport = {
