@@ -10,6 +10,7 @@
 }
 
 body {
+  background: black;
   /*background: rgb(21,252,75);
   background: linear-gradient(45deg, rgba(21,252,75,1) 0%, rgba(145,244,223,1) 100%);*/
 }

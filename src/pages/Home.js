@@ -17,7 +17,7 @@ export default function Home(props) {
             .then((response) => {
                 setTimeout(() => {
                     setLoaded(true);
-                }, 300)
+                }, 800)
                 if (response.ok) {
                     return response.json();
                 }
@@ -29,7 +29,7 @@ export default function Home(props) {
             .catch((error) => {
                 setTimeout(() => {
                     setLoaded(true);
-                }, 300)
+                }, 800)
                 console.error(error);
             });
     }, []);

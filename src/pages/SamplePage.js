@@ -10,7 +10,7 @@ export default function SamplePage(props) {
             height: '90vh'
         }}>
             <Title title={props.title} />
-            <h1>{props.children}</h1>
+            <h1 style={{color:"white"}}>{props.children}</h1>
         </div>
     )
 

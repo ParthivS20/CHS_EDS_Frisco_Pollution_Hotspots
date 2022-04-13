@@ -5,8 +5,8 @@ import {Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink} from "./NavBarElements"
 export default function NavBar() {
     return(
         <Nav>
-            <NavLink to={'/'}>
-                <h1>Logo</h1>
+            <NavLink to={'/'} style={{justifySelf: "start"}}>
+                <h1>Frisco Pollution Hotspots</h1>
             </NavLink>
             <Bars />
             <NavMenu>

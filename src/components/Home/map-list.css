@@ -41,19 +41,18 @@
 
 /* width */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 13px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
     background: #a4ffb5;
-    border-radius: 12px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
     background: #15fc4b;
-    border-radius: 12px;
+    border-radius: 13px;
 }
 
 /* Handle on hover */
