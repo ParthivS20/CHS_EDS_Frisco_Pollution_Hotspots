@@ -33,6 +33,7 @@
     height: 120px;
     width: 94%;
     transition-duration: 175ms;
+    cursor: pointer;
 }
 
 .list-location:hover {

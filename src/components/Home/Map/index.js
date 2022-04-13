@@ -10,30 +10,19 @@ import MapPopup from "./MapPopup";
 
 import "./map.css";
 
-export default function Map({loaded, locations}) {
-  const defaultViewport = {
-    latitude: 33.1499819,
-    longitude: -96.8340679,
-    zoom: 11.45
-  };
-
-  const [viewPort, setViewPort] = useState(defaultViewport);
-  const [selected, setSelected] = useState(null);
-  const [showPopup, setShowPopup] = useState(false);
+export default function Map({loaded, locations, mapView, setMapView, defaultViewState, selected, setSelected }) {
   const [mapMode, setMapMode] = useState(0);
 
   const closePopup = () => {
-    setShowPopup(false);
     setSelected(null);
   };
 
   const openPopup = (location) => {
-    setShowPopup(true);
     setSelected(location);
   };
 
   const updateViewPort = (vP) => {
-    setViewPort(vP);
+    setMapView(vP);
   };
 
   const mapStyles = [
@@ -48,7 +37,7 @@ export default function Map({loaded, locations}) {
           (
             <div className="map-wrapper">
               <ReactMapGl
-                  {...viewPort}
+                  {...mapView}
                   onMove={(evt) => {
                     updateViewPort(evt.viewState);
                   }}
@@ -66,7 +55,7 @@ export default function Map({loaded, locations}) {
                       );
                     })}
 
-                {showPopup && (
+                {selected && (
                     <MapPopup
                         location={selected}
                         openPopup={openPopup}
@@ -84,7 +73,7 @@ export default function Map({loaded, locations}) {
                   <FontAwesomeIcon icon={faLayerGroup} />
                 </button>
                 <button
-                    onClick={() => updateViewPort(defaultViewport)}
+                    onClick={() => updateViewPort(defaultViewState)}
                     className="map-btn"
                 >
                   <FontAwesomeIcon icon={faHome} />
