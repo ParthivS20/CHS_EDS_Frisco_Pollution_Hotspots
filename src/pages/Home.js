@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import Title from "../components/Title";
 import Map from "../components/Home/Map";
 
-import {request} from "../utils/Api";
+import {request} from "../lib/Api";
 import "../App.css";
 import MapList from "../components/Home/MapList";
 

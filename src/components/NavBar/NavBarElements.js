@@ -6,8 +6,9 @@ export const Nav = styled.nav`
   background: #000;
   height: 80px;
   display: flex;
-  gap: 15px;
   flex-direction: row;
+  align-items: center;
+  gap: 15px;
   z-index: 10;
 `
 
@@ -58,35 +59,29 @@ export const NavMenu = styled.div`
   }
 `
 
-export const NavBtn = styled.div`
+export const NavBtn = styled.button`
   position: relative;
-  display: inline-flex;
-  align-items: center;
-  margin-right: 1%;
-  margin-left: auto;
-  justify-self: flex-end;
   width: 100px;
-  
-  @media screen and (max-width: 818px) {
-    display: none;
-  }
-`
-
-export const NavBtnLink = styled(Link)`
+  height: 40px;
   border-radius: 4px;
   background: #02881f;
   padding: 10px 22px;
   color: #fff;
+  font-size: 16px;
+  margin-right: 1%;
+  margin-left: auto;
   border: none;
   outline: none;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
-  width: 100px;
-  height: 40px;
 
   &:hover {
     background: #fff;
     color: #02881f;
+  }
+  
+  @media screen and (max-width: 818px) {
+    display: none;
   }
 `
