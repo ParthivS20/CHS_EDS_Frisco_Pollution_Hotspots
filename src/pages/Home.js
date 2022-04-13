@@ -5,6 +5,7 @@ import Map from "../components/Home/Map";
 
 import {request} from "../utils/Api";
 import "../App.css";
+import MapList from "../components/Home/MapList";
 
 export default function Home(props) {
     const [loaded, setLoaded] = useState(false);
@@ -37,6 +38,7 @@ export default function Home(props) {
         <div className={"home-page"}>
             <Title title={props.title}/>
             <Map loaded={loaded} locations={locations}/>
+            <MapList locations={locations} />
         </div>
     );
 }
