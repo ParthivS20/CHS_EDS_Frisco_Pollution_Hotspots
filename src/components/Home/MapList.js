@@ -1,9 +1,9 @@
 import React from "react";
 
-export default function MapList({ locations }) {
+export default function MapList({ loaded, locations }) {
     return (
         <div className="map-list-container">
-            {locations.map(l => {
+            {loaded && locations.map(l => {
                 return <p>{l.name}</p>
             })}
         </div>

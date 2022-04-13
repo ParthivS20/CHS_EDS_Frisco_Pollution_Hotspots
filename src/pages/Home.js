@@ -38,7 +38,7 @@ export default function Home(props) {
         <div className={"home-page"}>
             <Title title={props.title}/>
             <Map loaded={loaded} locations={locations}/>
-            <MapList locations={locations} />
+            <MapList loaded={loaded} locations={locations} />
         </div>
     );
 }
