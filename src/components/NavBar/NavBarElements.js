@@ -81,6 +81,6 @@ export const NavBtnLink = styled(Link)`
 
   &:hover {
     background: #fff;
-    color: #010606;
+    color: #02881f;
   }
 `

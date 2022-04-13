@@ -11,9 +11,9 @@ export default function MapMarker({ location, openPopup }) {
         latitude={location.latitude}
         longitude={location.longitude}
         anchor="bottom"
-        style={{ cursor: "pointer" }}
+        style={{cursor: "pointer"}}
         onClick={() => openPopup(location)}
-      ></Marker>
+      />
     </div>
   );
 }
