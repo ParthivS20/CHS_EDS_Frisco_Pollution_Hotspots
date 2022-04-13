@@ -23,6 +23,7 @@ export default function Map({loaded, locations, mapView, setMapView, defaultView
 
   const updateViewPort = (vP) => {
     setMapView(vP);
+    setSelected(null);
   };
 
   const mapStyles = [
