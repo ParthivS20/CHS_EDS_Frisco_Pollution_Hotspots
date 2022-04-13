@@ -4,6 +4,10 @@ import netlifyIdentity from 'netlify-identity-widget'
 import {Nav, NavLink, Bars, NavMenu, NavBtn} from "./NavBarElements";
 
 export default function NavBar() {
+    const handleSignin = () => {
+        console.log("Sign In Clicked");
+        netlifyIdentity.open();
+    }
     return(
         <Nav>
             <NavLink to={'/'} style={{justifySelf: "start"}}>
@@ -21,7 +25,7 @@ export default function NavBar() {
                     Contact
                 </NavLink>
             </NavMenu>
-            <NavBtn onClick={netlifyIdentity.open}>
+            <NavBtn onClick={handleSignin}>
                 Sign In
             </NavBtn>
         </Nav>
