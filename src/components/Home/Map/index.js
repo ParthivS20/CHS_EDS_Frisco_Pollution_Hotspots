@@ -20,7 +20,7 @@ export default function Map({loaded, locations}) {
   const [viewPort, setViewPort] = useState(defaultViewport);
   const [selected, setSelected] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
-  const [mapMode, setMapMode] = useState(true);
+  const [mapMode, setMapMode] = useState(0);
 
   const closePopup = () => {
     setShowPopup(false);
@@ -35,6 +35,12 @@ export default function Map({loaded, locations}) {
   const updateViewPort = (vP) => {
     setViewPort(vP);
   };
+
+  const mapStyles = [
+      'mapbox://styles/mapbox/navigation-night-v1',
+      'mapbox://styles/mapbox/satellite-streets-v11',
+      'mapbox://styles/mapbox/streets-v11',
+  ];
 
   return (
     <div className={"map"}>
@@ -51,11 +57,7 @@ export default function Map({loaded, locations}) {
                     width: "72vw",
                     height: "85vh"
                   }}
-                  mapStyle={
-                    mapMode
-                        ? "mapbox://styles/mapbox/streets-v11"
-                        : "mapbox://styles/mapbox/satellite-streets-v11"
-                  }
+                  mapStyle={mapStyles[mapMode]}
               >
                 {locations &&
                     locations.map((l) => {
@@ -75,7 +77,7 @@ export default function Map({loaded, locations}) {
               <div className={"map-btn-container"}>
                 <button
                     onClick={() => {
-                      setMapMode(!mapMode);
+                      setMapMode(mapMode >= mapStyles.length - 1 ? 0 : mapMode + 1);
                     }}
                     className="map-btn"
                 >
