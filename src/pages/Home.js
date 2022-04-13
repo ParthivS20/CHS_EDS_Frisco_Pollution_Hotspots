@@ -17,7 +17,7 @@ export default function Home(props) {
             .then((response) => {
                 setTimeout(() => {
                     setLoaded(true);
-                }, 800)
+                }, 30000)
                 if (response.ok) {
                     return response.json();
                 }
