@@ -10,11 +10,11 @@ export default function MapList({ loaded, locations }) {
             </div>
             <div className={'map-list-bar'} />
             <div className={'location-list'}>
-                {loaded && locations.map(l => {
+                {loaded && locations && locations.map(l => {
                     return (
                         <div className={'list-location'}>
                             <h2>{l.name}</h2>
-                            <p>{`${l.latitude}, ${l.longitude}`}</p>
+                            <p>{`${l.latitude.toString().substring(0, 10)}, ${l.longitude.toString().substring(0, 11)}`}</p>
                         </div>
                     )
                 })}
