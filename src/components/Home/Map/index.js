@@ -10,6 +10,7 @@ import MapPopup from "./MapPopup";
 
 import "./map.css";
 
+/*
 // eslint-disable-next-line import/no-webpack-loader-syntax
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl-csp';
 // eslint-disable-next-line import/no-webpack-loader-syntax
@@ -19,7 +20,7 @@ import MapboxWorker from 'worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker';
 // notice the exclamation point in the import.
 // @ts-ignore
 // eslint-disable-next-line import/no-webpack-loader-syntax, import/no-unresolved
-mapboxgl.workerClass = MapboxWorker;
+mapboxgl.workerClass = MapboxWorker;*/
 
 export default function Map({loaded, locations}) {
   const defaultViewport = {
