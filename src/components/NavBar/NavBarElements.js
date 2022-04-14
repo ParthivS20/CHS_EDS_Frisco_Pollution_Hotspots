@@ -129,6 +129,7 @@ export const UserMenu = styled.div`
   width: 275px;
   height: 300px;
   background: #343434;
+  color: white;
   right: 1%;
   top: 80px;
   border-radius: 15px;
@@ -136,6 +137,7 @@ export const UserMenu = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 20px;
 `
 
 export const SignOutBtn = styled.button`

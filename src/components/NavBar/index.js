@@ -6,7 +6,7 @@ import {ClickOutside} from "../../lib/ClickOutside";
 import profile from './profile.png'
 
 export default function NavBar({user}) {
-    const [menuState, setMenuState] = useState(true);
+    const [menuState, setMenuState] = useState(false);
 
     const menu = useRef(null);
     const profileBtn = useRef(null);
@@ -50,7 +50,7 @@ export default function NavBar({user}) {
                         <ProfileImg src={getProfilePic()} />
                     </Profile>
                     <UserMenu ref={menuState ? menu : null} style={{display: menuState ? "flex" : "none", visibility: menuState ? "visible" : "hidden"}}>
-                        <h3>{`Welcome ${user.full_name.split(" ")[0]}`}</h3>
+                        <h3>{`Welcome, ${user.full_name.split(" ")[0]}`}</h3>
                         <SignOutBtn onClick={handleSignOut}>
                             Sign Out
                         </SignOutBtn>
