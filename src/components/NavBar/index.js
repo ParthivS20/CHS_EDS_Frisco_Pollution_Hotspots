@@ -1,6 +1,19 @@
 import React, {useRef, useState} from 'react';
 import netlifyIdentity from 'netlify-identity-widget'
-import {Nav, NavLink, Bars, NavMenu, LogInBtn, Profile, ProfileImg, UserMenu, SignOutBtn} from "./NavBarElements";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmarkCircle } from "@fortawesome/free-solid-svg-icons";
+import {
+    Nav,
+    NavLink,
+    Bars,
+    NavMenu,
+    LogInBtn,
+    Profile,
+    ProfileImg,
+    UserMenu,
+    SignOutBtn,
+    UserMenuExitBtn
+} from "./NavBarElements";
 import {ClickOutside} from "../../lib/ClickOutside";
 
 import profile from './profile.png'
@@ -54,6 +67,11 @@ export default function NavBar({user}) {
                         <SignOutBtn onClick={handleSignOut}>
                             Sign Out
                         </SignOutBtn>
+                        <UserMenuExitBtn onClick={() => {
+                            setMenuState(false)
+                        }}>
+                            <FontAwesomeIcon icon={faXmarkCircle} />
+                        </UserMenuExitBtn>
                     </UserMenu>
                 </>
                 :

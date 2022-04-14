@@ -140,6 +140,19 @@ export const UserMenu = styled.div`
   gap: 20px;
 `
 
+export const UserMenuExitBtn = styled.div`
+  position: absolute;
+  top: 3%;
+  right: 3%;
+  color: white;
+  transition-duration: 200ms;
+  font-size: 20px;
+
+  &:hover {
+    color: #00ff3d;
+  }
+`
+
 export const SignOutBtn = styled.button`
   width: 90px;
   height: 40px;
