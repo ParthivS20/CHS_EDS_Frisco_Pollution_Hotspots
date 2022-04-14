@@ -1,7 +1,7 @@
 import React, {useRef, useState} from 'react';
 import netlifyIdentity from 'netlify-identity-widget'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmarkCircle } from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faXmarkCircle} from "@fortawesome/free-solid-svg-icons";
 import {
     Nav,
     NavLink,
@@ -34,7 +34,7 @@ export default function NavBar({user}) {
     }
 
     const getProfilePic = () => {
-        if(user && user.avatar_url) {
+        if (user && user.avatar_url) {
             return user.avatar_url;
         }
         return profile;
@@ -60,17 +60,17 @@ export default function NavBar({user}) {
             {user ?
                 <>
                     <Profile onClick={() => setMenuState(!menuState)} ref={profileBtn}>
-                        <ProfileImg src={getProfilePic()} />
+                        <ProfileImg src={getProfilePic()}/>
                     </Profile>
                     <UserMenu ref={menuState ? menu : null} style={{visibility: menuState ? "visible" : "hidden"}}>
-                        <h3>{`Welcome, ${user.full_name.split(" ")[0]}`}</h3>
-                        <SignOutBtn onClick={handleSignOut}>
+                        <h3 style={{visibility: menuState ? "visible" : "hidden"}}>{`Welcome, ${user.full_name.split(" ")[0]}`}</h3>
+                        <SignOutBtn onClick={handleSignOut} style={{visibility: menuState ? "visible" : "hidden"}}>
                             Sign Out
                         </SignOutBtn>
                         <UserMenuExitBtn onClick={() => {
                             setMenuState(false)
-                        }}>
-                            <FontAwesomeIcon icon={faXmarkCircle} />
+                        }} style={{visibility: menuState ? "visible" : "hidden"}}>
+                            <FontAwesomeIcon icon={faXmarkCircle}/>
                         </UserMenuExitBtn>
                     </UserMenu>
                 </>
