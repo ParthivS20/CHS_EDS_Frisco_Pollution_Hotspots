@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import netlifyIdentity from 'netlify-identity-widget'
 
-import {Nav, NavLink, Bars, NavMenu, LogInBtn, Profile, ProfileImg} from "./NavBarElements";
+import {Nav, NavLink, Bars, NavMenu, LogInBtn, Profile, ProfileImg, UserMenu} from "./NavBarElements";
 import profile from './profile.png'
 
 export default function NavBar({user}) {
+    const [menuState, setMenuState] = useState(false);
+
     const handleSignIn = () => {
         netlifyIdentity.open();
     }
@@ -16,7 +18,8 @@ export default function NavBar({user}) {
         return profile;
     }
 
-    return (<Nav>
+    return (
+        <Nav>
             <NavLink to={'/'} style={{justifySelf: "start"}}>
                 <h1>Frisco Pollution Hotspots</h1>
             </NavLink>
@@ -33,7 +36,7 @@ export default function NavBar({user}) {
                 </NavLink>
             </NavMenu>
             {user ?
-                <Profile>
+                <Profile onClick={() => setMenuState(!menuState)}>
                     <ProfileImg src={getProfilePic()} />
                 </Profile>
                 :
@@ -41,5 +44,7 @@ export default function NavBar({user}) {
                     Sign In
                 </LogInBtn>
             }
-        </Nav>)
+            <UserMenu style={{display: menuState ? "block" : "none"}}/>
+        </Nav>
+    )
 }

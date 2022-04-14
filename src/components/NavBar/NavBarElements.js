@@ -122,3 +122,15 @@ export const ProfileImg = styled.img`
     display: none;
   }
 `
+
+export const UserMenu = styled.div`
+  position: fixed;
+  z-index: 9;
+  width: 275px;
+  height: 300px;
+  background: #343434;
+  right: 1%;
+  top: 80px;
+  border-radius: 15px;
+  box-shadow: 0 2px 7px black;
+`
