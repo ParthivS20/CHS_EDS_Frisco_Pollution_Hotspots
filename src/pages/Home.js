@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useRef, useState} from "react";
 
 import Title from "../components/Title";
 import Map from "../components/Home/Map";
@@ -8,16 +8,15 @@ import "../App.css";
 import MapList from "../components/Home/MapList";
 
 export default function Home(props) {
-    const defaultMapView = {
-        latitude: 33.1499819,
-        longitude: -96.8340679,
-        zoom: 11.45
-    };
-
     const [loaded, setLoaded] = useState(false);
     const [locations, setLocations] = useState(null);
-    const [mapView, setMapView] = useState(defaultMapView);
     const [selected, setSelected] = useState(null);
+    const mapRef = useRef(null);
+
+    const updateView = useCallback((longitude, latitude, zoom) => {
+        setSelected(null);
+        mapRef.current?.flyTo({center: [longitude, latitude], zoom: zoom ? zoom : 11.45,  duration: 1500});
+    }, []);
 
     useEffect(() => {
         setLoaded(false);
@@ -45,9 +44,9 @@ export default function Home(props) {
     return (
         <div className={"home-page"}>
             <Title title={props.title}/>
-            <Map loaded={loaded} locations={locations} mapView={mapView} setMapView={setMapView}
-                 defaultViewState={defaultMapView} selected={selected} setSelected={setSelected}/>
-            <MapList loaded={loaded} locations={locations} setMapView={setMapView} setSelected={setSelected}/>
+            <Map loaded={loaded} locations={locations}
+                 selected={selected} setSelected={setSelected} mapRef={mapRef} updateView={updateView}/>
+            <MapList loaded={loaded} locations={locations} setSelected={setSelected} updateView={updateView}/>
         </div>
     );
 }

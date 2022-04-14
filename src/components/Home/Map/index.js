@@ -18,7 +18,13 @@ import streets from "./MapImages/streets.png"
 import "./map.css";
 import {ClickOutside} from "../../../lib/ClickOutside";
 
-export default function Map({loaded, locations, mapView, setMapView, defaultViewState, selected, setSelected }) {
+export default function Map({loaded, locations, selected, setSelected, mapRef, updateView }) {
+  const defaultMapView = {
+    latitude: 33.1499819,
+    longitude: -96.8340679,
+    zoom: 11.45
+  };
+
   const [mapMode, setMapMode] = useState("dark");
   const [viewMapModeSelector, setViewMapModeSelector] = useState(false);
 
@@ -32,11 +38,6 @@ export default function Map({loaded, locations, mapView, setMapView, defaultView
 
   const openPopup = (location) => {
     setSelected(location);
-  };
-
-  const updateViewPort = (vP) => {
-    setMapView(vP);
-    setSelected(null);
   };
 
   const mapStyles = {
@@ -78,10 +79,8 @@ export default function Map({loaded, locations, mapView, setMapView, defaultView
           (
             <div className="map-wrapper">
               <ReactMapGl
-                  {...mapView}
-                  onMove={(evt) => {
-                    updateViewPort(evt.viewState);
-                  }}
+                  ref={mapRef}
+                  initialViewState={defaultMapView}
                   mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
                   style={{
                     width: "72vw",
@@ -132,7 +131,7 @@ export default function Map({loaded, locations, mapView, setMapView, defaultView
                   <FontAwesomeIcon icon={faLayerGroup} />
                 </button>
                 <button
-                    onClick={() => updateViewPort(defaultViewState)}
+                    onClick={() => updateView(defaultMapView.longitude, defaultMapView.latitude)}
                     className="map-btn"
                 >
                   <FontAwesomeIcon icon={faHome} />

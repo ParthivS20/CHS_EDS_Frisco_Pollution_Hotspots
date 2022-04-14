@@ -2,7 +2,7 @@ import React from "react";
 
 import "./map-list.css"
 
-export default function MapList({ loaded, locations, setMapView, setSelected }) {
+export default function MapList({ loaded, locations, setSelected, updateView }) {
     return (
         <div className="map-list-container">
             <div className={'map-list-title'}>
@@ -13,11 +13,7 @@ export default function MapList({ loaded, locations, setMapView, setSelected }) 
                 {loaded && locations && locations.map((l, i)=> {
                     return (
                         <div className={'list-location'} key={i} onClick={() => {
-                            setMapView({
-                                latitude: l.latitude,
-                                longitude: l.longitude,
-                                zoom: 15,
-                            })
+                            updateView(l.longitude, l.latitude, 14)
                             setSelected(l)
                         }}>
                             <h2>{l.name}</h2>
