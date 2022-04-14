@@ -18,7 +18,6 @@ function App() {
 
     if (userCookie) {
       setUser(JSON.parse(userCookie))
-      console.log(JSON.parse(userCookie))
     } else {
       loginUser();
     }

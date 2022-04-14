@@ -10,8 +10,8 @@ export default function NavBar({user}) {
     }
 
     const getProfilePic = () => {
-        if(user && user.app_metadata.provider === "google") {
-            return user.user_metadata.avatar_url;
+        if(user && user.provider === "google") {
+            return user.avatar_url;
         }
         return profile;
     }
