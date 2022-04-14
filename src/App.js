@@ -8,33 +8,36 @@ import Home from "./pages/Home";
 import {loginUser, logoutUser} from "./lib/identityActions";
 
 import "./App.css";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 function App() {
   const [user, setUser] = useState(null);
-  const userCookie = localStorage.getItem("currentOpenSaucedUser");
 
-  if (userCookie) {
-    setUser(JSON.parse(userCookie))
-  } else {
-    loginUser();
-  }
+  useEffect(() => {
+    const userCookie = localStorage.getItem("currentOpenSaucedUser");
 
-  netlifyIdentity.on("login", (user) => {
-    setUser(user);
-    loginUser()
-    console.log(user)
-  });
+    if (userCookie) {
+      setUser(JSON.parse(userCookie))
+    } else {
+      loginUser();
+    }
 
-  netlifyIdentity.on("logout", () => {
-    setUser(null)
-    logoutUser()
-  });
+    netlifyIdentity.on("login", (user) => {
+      setUser(user);
+      loginUser()
+      console.log(user)
+    });
+
+    netlifyIdentity.on("logout", () => {
+      setUser(null)
+      logoutUser()
+    });
+  }, [])
 
   return (
     <Router>
       <div className={"content"}>
-        <NavBar/>
+        <NavBar user={user}/>
         <Routes>
           <Route path={"/"} exact element={<Home />} />
           <Route
