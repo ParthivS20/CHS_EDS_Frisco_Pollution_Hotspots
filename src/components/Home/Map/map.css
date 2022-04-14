@@ -37,6 +37,7 @@
   font-size: 14px;
   transition-duration: 0.3s;
   pointer-events: auto;
+  cursor: pointer;
 }
 
 .map-btn:hover {
