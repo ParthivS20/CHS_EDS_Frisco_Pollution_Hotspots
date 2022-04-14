@@ -18,15 +18,13 @@ function App() {
 
     if (userCookie) {
       setUser(JSON.parse(userCookie))
-      console.log(JSON.parse(userCookie))
     } else {
       loginUser();
     }
 
-    netlifyIdentity.on("login", (user) => {
-      setUser(user);
+    netlifyIdentity.on("login", () => {
       loginUser()
-      console.log(user)
+      setUser(JSON.parse(localStorage.getItem("currentOpenSaucedUser")));
     });
 
     netlifyIdentity.on("logout", () => {
