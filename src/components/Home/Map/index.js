@@ -71,7 +71,7 @@ export default function Map({loaded, locations, mapView, setMapView, defaultView
                 )}
               </ReactMapGl>
               <div className={"map-btn-container"}>
-                <div className={'map-selector'} style={{visibility: viewMapModeSelector ? "visible" : "hidden"}} ref={viewMapModeSelector ? mapModeSelector : null}>
+                <div className={'map-selector'} style={{display:viewMapModeSelector ? "flex" : "none", visibility: viewMapModeSelector ? "visible" : "hidden"}} ref={viewMapModeSelector ? mapModeSelector : null}>
 
                 </div>
                 <button

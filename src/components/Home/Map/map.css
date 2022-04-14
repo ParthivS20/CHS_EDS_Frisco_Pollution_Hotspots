@@ -27,7 +27,6 @@
 }
 
 .map-selector {
-  display: grid;
   background: #343434;
   border-radius: 10px;
   box-shadow: 0 2px 7px black;

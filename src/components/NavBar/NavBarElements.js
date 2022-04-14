@@ -124,7 +124,6 @@ export const ProfileImg = styled.img`
 `
 
 export const UserMenu = styled.div`
-  display: flex;
   position: fixed;
   z-index: 9;
   width: 275px;
