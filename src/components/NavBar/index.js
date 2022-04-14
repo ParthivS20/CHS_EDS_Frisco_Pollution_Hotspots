@@ -1,11 +1,14 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import netlifyIdentity from 'netlify-identity-widget'
-
 import {Nav, NavLink, Bars, NavMenu, LogInBtn, Profile, ProfileImg, UserMenu} from "./NavBarElements";
+import {ClickOutside} from "../../lib/ClickOutside";
+
 import profile from './profile.png'
 
 export default function NavBar({user}) {
-    const [menuState, setMenuState] = useState(false);
+    const [menuState, setMenuState] = useState(true);
+    const menu = useRef(null);
+    ClickOutside(menu, () => setMenuState(false))
 
     const handleSignIn = () => {
         netlifyIdentity.open();
@@ -44,7 +47,7 @@ export default function NavBar({user}) {
                     Sign In
                 </LogInBtn>
             }
-            <UserMenu style={{display: menuState ? "block" : "none"}}/>
+            <UserMenu ref={menuState ? menu : null} style={{display: menuState ? "block" : "none", visibility: menuState ? "visible" : "hidden"}}/>
         </Nav>
     )
 }
