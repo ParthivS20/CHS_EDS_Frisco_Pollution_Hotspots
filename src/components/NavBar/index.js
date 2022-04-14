@@ -3,17 +3,16 @@ import netlifyIdentity from 'netlify-identity-widget'
 
 import {Nav, NavLink, Bars, NavMenu, NavBtn} from "./NavBarElements";
 
-export default function NavBar() {
+export default function NavBar({user}) {
     const handleSignin = () => {
         netlifyIdentity.open();
     }
 
-    return(
-        <Nav>
+    return (<Nav>
             <NavLink to={'/'} style={{justifySelf: "start"}}>
                 <h1>Frisco Pollution Hotspots</h1>
             </NavLink>
-            <Bars />
+            <Bars/>
             <NavMenu>
                 <NavLink to={'/mission'} activestyle={''}>
                     Mission
@@ -25,9 +24,10 @@ export default function NavBar() {
                     Contact
                 </NavLink>
             </NavMenu>
-            <NavBtn onClick={handleSignin}>
-                Sign In
-            </NavBtn>
-        </Nav>
-    )
+            {user ? <div/> :
+                <NavBtn onClick={handleSignin}>
+                    Sign In
+                </NavBtn>
+            }
+        </Nav>)
 }
