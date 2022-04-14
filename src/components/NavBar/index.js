@@ -24,7 +24,9 @@ export default function NavBar({user}) {
                     Contact
                 </NavLink>
             </NavMenu>
-            {user ? <div>Logged In</div> :
+            {user ? <NavBtn >
+                    Logged In
+                </NavBtn> :
                 <NavBtn onClick={handleSignIn}>
                     Sign In
                 </NavBtn>
