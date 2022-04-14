@@ -26,7 +26,7 @@ export default function Home(props) {
             let dlat = lat2 - lat1;
             let a = Math.pow(Math.sin(dlat / 2), 2)
                 + Math.cos(lat1) * Math.cos(lat2)
-                * Math.pow(Math.sin(dlon / 2),2);
+                * Math.pow(Math.sin(dlon / 2), 2);
 
             let c = 2 * Math.asin(Math.sqrt(a));
 
@@ -35,18 +35,18 @@ export default function Home(props) {
             let r = 6371;
 
             // calculate the result
-            return(c * r);
+            return (c * r);
         }
 
         const timeScaler = () => {
             let distance = getDistance();
-            if(distance < 2000) return 1500 + distance * 4 / 3.8;
-            if(distance < 10000) return 1500 + distance / 2.5;
+            if (distance < 2000) return 1500 + distance * 4 / 3.8;
+            if (distance < 10000) return 1500 + distance / 2.5;
             return 1500 + distance / 6;
         }
 
         setSelected(null);
-        mapRef.current?.flyTo({center: [longitude, latitude], zoom: zoom ? zoom : 11.45,  duration: timeScaler()});
+        mapRef.current?.flyTo({center: [longitude, latitude], zoom: zoom ? zoom : 11.45, duration: timeScaler()});
         getDistance()
     }, [mapCenter]);
 
@@ -77,7 +77,8 @@ export default function Home(props) {
         <div className={"home-page"}>
             <Title title={props.title}/>
             <Map loaded={loaded} locations={locations}
-                 selected={selected} setSelected={setSelected} mapRef={mapRef} updateView={updateView} setMapCenter={setMapCenter}/>
+                 selected={selected} setSelected={setSelected} mapRef={mapRef} updateView={updateView}
+                 setMapCenter={setMapCenter}/>
             <MapList loaded={loaded} locations={locations} setSelected={setSelected} updateView={updateView}/>
         </div>
     );
