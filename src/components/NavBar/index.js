@@ -9,6 +9,13 @@ export default function NavBar({user}) {
         netlifyIdentity.open();
     }
 
+    const getProfilePic = () => {
+        if(user && user.app_metadata.provider === "google") {
+            return user.user_metadata.avatar_url;
+        }
+        return profile;
+    }
+
     return (<Nav>
             <NavLink to={'/'} style={{justifySelf: "start"}}>
                 <h1>Frisco Pollution Hotspots</h1>
@@ -27,7 +34,7 @@ export default function NavBar({user}) {
             </NavMenu>
             {user ?
                 <Profile>
-                    <ProfileImg src={profile} />
+                    <ProfileImg src={getProfilePic()} />
                 </Profile>
                 :
                 <LogInBtn onClick={handleSignIn}>
