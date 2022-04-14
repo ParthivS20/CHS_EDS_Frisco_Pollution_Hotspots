@@ -10,7 +10,7 @@ export default function NavBar({user}) {
     }
 
     const getProfilePic = () => {
-        if(user && user.provider === "google") {
+        if(user && user.avatar_url) {
             return user.avatar_url;
         }
         return profile;
