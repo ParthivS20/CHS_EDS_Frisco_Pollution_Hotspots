@@ -1,3 +1,4 @@
+import {useEffect, useState} from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import netlifyIdentity from "netlify-identity-widget";
 
@@ -8,7 +9,6 @@ import Home from "./pages/Home";
 import {loginUser, logoutUser} from "./lib/identityActions";
 
 import "./App.css";
-import {useEffect, useState} from "react";
 
 function App() {
   const [user, setUser] = useState(null);

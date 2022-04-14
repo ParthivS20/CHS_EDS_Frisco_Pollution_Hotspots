@@ -26,7 +26,7 @@ export default function NavBar({user}) {
                 </NavLink>
             </NavMenu>
             {user ?
-                <Profile src={profile}>
+                <Profile>
                     <ProfileImg src={profile} />
                 </Profile>
                 :
