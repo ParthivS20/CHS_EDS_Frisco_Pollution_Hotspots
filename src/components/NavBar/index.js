@@ -62,7 +62,7 @@ export default function NavBar({user}) {
                     <Profile onClick={() => setMenuState(!menuState)} ref={profileBtn}>
                         <ProfileImg src={getProfilePic()} />
                     </Profile>
-                    <UserMenu ref={menuState ? menu : null} style={{display: menuState ? "flex" : "none", visibility: menuState ? "visible" : "hidden"}}>
+                    <UserMenu ref={menuState ? menu : null} style={{visibility: menuState ? "visible" : "hidden"}}>
                         <h3>{`Welcome, ${user.full_name.split(" ")[0]}`}</h3>
                         <SignOutBtn onClick={handleSignOut}>
                             Sign Out

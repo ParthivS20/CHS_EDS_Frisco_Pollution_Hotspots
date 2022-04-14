@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useRef, useState} from "react";
 import ReactMapGl from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,9 +9,15 @@ import MapMarker from "./MapMarker";
 import MapPopup from "./MapPopup";
 
 import "./map.css";
+import {ClickOutside} from "../../../lib/ClickOutside";
 
 export default function Map({loaded, locations, mapView, setMapView, defaultViewState, selected, setSelected }) {
   const [mapMode, setMapMode] = useState(0);
+  const [viewMapModeSelector, setViewMapModeSelector] = useState(false);
+
+  const mapModeSelector = useRef(null);
+  const layerBtn = useRef(null);
+  ClickOutside(mapModeSelector, () => setViewMapModeSelector(false), [layerBtn])
 
   const closePopup = () => {
     setSelected(null);
@@ -67,9 +73,10 @@ export default function Map({loaded, locations, mapView, setMapView, defaultView
               <div className={"map-btn-container"}>
                 <button
                     onClick={() => {
-                      setMapMode(mapMode >= mapStyles.length - 1 ? 0 : mapMode + 1);
+                      setViewMapModeSelector(!viewMapModeSelector)
                     }}
                     className="map-btn"
+                    ref={layerBtn}
                 >
                   <FontAwesomeIcon icon={faLayerGroup} />
                 </button>
@@ -79,6 +86,9 @@ export default function Map({loaded, locations, mapView, setMapView, defaultView
                 >
                   <FontAwesomeIcon icon={faHome} />
                 </button>
+                <div className={'map-selector'} style={{visibility: viewMapModeSelector ? "visible" : "hidden"}} ref={viewMapModeSelector ? mapModeSelector : null}>
+
+                </div>
               </div>
             </div>
           )
