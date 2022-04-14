@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import ReactMapGl from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -18,7 +18,7 @@ import streets from "./MapImages/streets.png"
 import "./map.css";
 import {ClickOutside} from "../../../lib/ClickOutside";
 
-export default function Map({loaded, locations, selected, setSelected, mapRef, updateView }) {
+export default function Map({loaded, locations, selected, setSelected, mapRef, updateView, setMapCenter }) {
   const defaultMapView = {
     latitude: 33.1499819,
     longitude: -96.8340679,
@@ -39,6 +39,10 @@ export default function Map({loaded, locations, selected, setSelected, mapRef, u
   const openPopup = (location) => {
     setSelected(location);
   };
+
+  useEffect(() => {
+    setMapCenter([defaultMapView.longitude, defaultMapView.latitude])
+  }, [defaultMapView.latitude, defaultMapView.longitude, setMapCenter])
 
   const mapStyles = {
     streets: {
@@ -87,6 +91,9 @@ export default function Map({loaded, locations, selected, setSelected, mapRef, u
                     height: "85vh"
                   }}
                   mapStyle={mapStyles[mapMode].style}
+                  onMove={evt => {
+                    setMapCenter([evt.viewState.longitude, evt.viewState.latitude]);
+                  }}
               >
                 {locations &&
                     locations.map((l) => {
