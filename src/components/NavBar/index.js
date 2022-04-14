@@ -1,12 +1,12 @@
 import React, {useRef, useState} from 'react';
 import netlifyIdentity from 'netlify-identity-widget'
-import {Nav, NavLink, Bars, NavMenu, LogInBtn, Profile, ProfileImg, UserMenu} from "./NavBarElements";
+import {Nav, NavLink, Bars, NavMenu, LogInBtn, Profile, ProfileImg, UserMenu, SignOutBtn} from "./NavBarElements";
 import {ClickOutside} from "../../lib/ClickOutside";
 
 import profile from './profile.png'
 
 export default function NavBar({user}) {
-    const [menuState, setMenuState] = useState(false);
+    const [menuState, setMenuState] = useState(true);
 
     const menu = useRef(null);
     const profileBtn = useRef(null);
@@ -41,15 +41,22 @@ export default function NavBar({user}) {
                 </NavLink>
             </NavMenu>
             {user ?
-                <Profile onClick={() => setMenuState(!menuState)} ref={profileBtn}>
-                    <ProfileImg src={getProfilePic()} />
-                </Profile>
+                <>
+                    <Profile onClick={() => setMenuState(!menuState)} ref={profileBtn}>
+                        <ProfileImg src={getProfilePic()} />
+                    </Profile>
+                    <UserMenu ref={menuState ? menu : null} style={{display: menuState ? "flex" : "none", visibility: menuState ? "visible" : "hidden"}}>
+                        <h3>{`Welcome ${user.fullName.split(" ")[0]}`}</h3>
+                        <SignOutBtn>
+                            Sign Out
+                        </SignOutBtn>
+                    </UserMenu>
+                </>
                 :
                 <LogInBtn onClick={handleSignIn}>
                     Sign In
                 </LogInBtn>
             }
-            <UserMenu ref={menuState ? menu : null} style={{display: menuState ? "block" : "none", visibility: menuState ? "visible" : "hidden"}}/>
         </Nav>
     )
 }

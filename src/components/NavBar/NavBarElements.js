@@ -133,4 +133,23 @@ export const UserMenu = styled.div`
   top: 80px;
   border-radius: 15px;
   box-shadow: 0 2px 7px black;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
+
+export const SignOutBtn = styled.button`
+  width: 90px;
+  height: 40px;
+  border: none;
+  background-color: red;
+  color: white;
+  font-size: 16px;
+  padding: 7px;
+  border-radius: 4px;
+  transition-duration: 200ms;
+
+  &:hover {
+    background-color: #a90000;
+  }
 `
