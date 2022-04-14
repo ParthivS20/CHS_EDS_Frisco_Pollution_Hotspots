@@ -15,7 +15,8 @@ export default function MapPopup({ location, closePopup, openPopup }) {
       onOpen={() => {
         openPopup(location);
       }}
-      closeOnClick={false}
+      closeOnClick={true}
+      closeOnMove={true}
     >
       {location.name}
     </Popup>
