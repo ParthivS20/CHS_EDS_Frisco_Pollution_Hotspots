@@ -14,6 +14,7 @@ import {
     SignOutBtn,
     UserMenuExitBtn
 } from "./NavBarElements";
+
 import {ClickOutside} from "../../lib/ClickOutside";
 
 import profile from './profile.png'

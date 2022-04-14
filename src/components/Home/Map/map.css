@@ -26,17 +26,6 @@
   pointer-events: none;
 }
 
-.map-selector {
-  background: #343434;
-  border-radius: 10px;
-  box-shadow: 0 2px 7px black;
-  width: 300px;
-  height: 150px;
-  z-index: 8;
-  margin-right: 4px;
-  pointer-events: auto;
-}
-
 .map-btn {
   border-radius: 5px;
   border: solid 3px #a4ffb5;
@@ -98,3 +87,64 @@
   -webkit-animation: fa-spin 1500ms infinite linear;
   animation: fa-spin 1500ms infinite linear;
 }
+
+.map-selector {
+  background: #343434;
+  border-radius: 10px;
+  box-shadow: 0 2px 9px black;
+  width: 265px;
+  height: 204px;
+  z-index: 8;
+  margin-right: 4px;
+  pointer-events: auto;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 0;
+  padding: 2px;
+}
+
+.map-option {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: calc(100%/3);
+  height: 90px;
+  padding: 0;
+  overflow: visible;
+  flex-direction: column;
+  color: white;
+  font-size: 12px;
+  gap: 4px;
+  margin: 0;
+}
+
+.map-option-img {
+  width: 58px;
+  height: 58px;
+  padding: 0;
+  border: solid white 2px;
+  display: flex;
+  justify-content: flex-start;
+  background: white;
+  align-items: center;
+  border-radius: 12px;
+  cursor: pointer;
+  transition-duration: 200ms;
+}
+
+.map-option-img:hover {
+  transform: scale(1.08);
+  filter: brightness(80%);
+}
+
+
+.map-option-img > img {
+  transform: scale(1.1);
+}
+
+.map-mode-text {
+  text-align: center;
+}
+
