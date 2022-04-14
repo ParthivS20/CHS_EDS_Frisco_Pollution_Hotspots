@@ -6,9 +6,11 @@ import {ClickOutside} from "../../lib/ClickOutside";
 import profile from './profile.png'
 
 export default function NavBar({user}) {
-    const [menuState, setMenuState] = useState(true);
+    const [menuState, setMenuState] = useState(false);
+
     const menu = useRef(null);
-    ClickOutside(menu, () => setMenuState(false))
+    const profileBtn = useRef(null);
+    ClickOutside(menu, () => setMenuState(false), [profileBtn])
 
     const handleSignIn = () => {
         netlifyIdentity.open();
@@ -39,7 +41,7 @@ export default function NavBar({user}) {
                 </NavLink>
             </NavMenu>
             {user ?
-                <Profile onClick={() => setMenuState(!menuState)}>
+                <Profile onClick={() => setMenuState(!menuState)} ref={profileBtn}>
                     <ProfileImg src={getProfilePic()} />
                 </Profile>
                 :

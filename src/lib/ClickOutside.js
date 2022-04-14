@@ -1,10 +1,25 @@
 import {useEffect} from "react";
 
-export function ClickOutside(ref, callback) {
+export function ClickOutside(ref, callback, exclude) {
     useEffect(() => {
+        if(!ref) return;
         function handleClickOutside(event) {
-            if(ref.current && !ref.current.contains(event.target)) {
-                callback()
+            const checkExclude = () => {
+                if(!exclude) return true;
+                if(exclude.length <= 0) return true;
+
+                let c = true;
+                exclude.every(e => {
+                    if(!e || !e.current) return true;
+                    c = !e.current.contains(event.target);
+                    return c;
+                })
+
+                return c;
+            }
+
+            if(ref.current && !ref.current.contains(event.target) && checkExclude()) {
+                callback();
             }
         }
 
@@ -12,5 +27,5 @@ export function ClickOutside(ref, callback) {
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         }
-    }, [callback, ref])
+    }, [ref, callback, exclude])
 }

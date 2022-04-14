@@ -10,9 +10,9 @@ export default function MapList({ loaded, locations, setMapView, setSelected }) 
             </div>
             <div className={'map-list-bar'} />
             <div className={'location-list'}>
-                {loaded && locations && locations.map(l => {
+                {loaded && locations && locations.map((l, i)=> {
                     return (
-                        <div className={'list-location'} onClick={() => {
+                        <div className={'list-location'} key={i} onClick={() => {
                             setMapView({
                                 latitude: l.latitude,
                                 longitude: l.longitude,
