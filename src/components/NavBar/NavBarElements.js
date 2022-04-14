@@ -59,7 +59,7 @@ export const NavMenu = styled.div`
   }
 `
 
-export const NavBtn = styled.button`
+export const LogInBtn = styled.button`
   position: relative;
   width: 100px;
   height: 40px;
@@ -80,6 +80,43 @@ export const NavBtn = styled.button`
     background: #fff;
     color: #02881f;
   }
+  
+  @media screen and (max-width: 818px) {
+    display: none;
+  }
+`
+
+export const Profile = styled.div`
+  width: 48px;
+  height: 48px;
+  position: relative;
+  border-radius: 48px;
+  border: solid 4px white;
+  background: white;
+  transition: all 0.2s ease-in-out;
+  overflow: hidden;
+  margin-right: 3%;
+  margin-left: auto;
+  cursor: pointer;
+  border-spacing: -1px;
+  border-collapse: collapse;
+  padding: -1px;
+  display: block;
+  
+  &:hover {
+    border-color:  #15fc4b;
+  }
+  
+  @media screen and (max-width: 818px) {
+    display: none;
+  }
+`
+
+export const ProfileImg = styled.img`
+  width: 100%;
+  height: 100%;
+  transform: scale(1.02);
+  border: none;
   
   @media screen and (max-width: 818px) {
     display: none;

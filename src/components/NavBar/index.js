@@ -1,7 +1,8 @@
 import React from 'react';
 import netlifyIdentity from 'netlify-identity-widget'
 
-import {Nav, NavLink, Bars, NavMenu, NavBtn} from "./NavBarElements";
+import {Nav, NavLink, Bars, NavMenu, LogInBtn, Profile, ProfileImg} from "./NavBarElements";
+import profile from './profile.png'
 
 export default function NavBar({user}) {
     const handleSignIn = () => {
@@ -24,12 +25,14 @@ export default function NavBar({user}) {
                     Contact
                 </NavLink>
             </NavMenu>
-            {user ? <NavBtn >
-                    Logged In
-                </NavBtn> :
-                <NavBtn onClick={handleSignIn}>
+            {user ?
+                <Profile src={profile}>
+                    <ProfileImg src={profile} />
+                </Profile>
+                :
+                <LogInBtn onClick={handleSignIn}>
                     Sign In
-                </NavBtn>
+                </LogInBtn>
             }
         </Nav>)
 }
