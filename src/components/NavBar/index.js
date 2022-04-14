@@ -3,7 +3,7 @@ import netlifyIdentity from 'netlify-identity-widget'
 
 import {Nav, NavLink, Bars, NavMenu, NavBtn} from "./NavBarElements";
 
-export default function NavBar({user}) {
+export default function NavBar() {
     const handleSignin = () => {
         netlifyIdentity.open();
     }

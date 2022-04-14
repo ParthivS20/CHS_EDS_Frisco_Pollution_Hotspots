@@ -34,7 +34,7 @@ function App() {
   return (
     <Router>
       <div className={"content"}>
-        <NavBar user={user}/>
+        <NavBar/>
         <Routes>
           <Route path={"/"} exact element={<Home />} />
           <Route
