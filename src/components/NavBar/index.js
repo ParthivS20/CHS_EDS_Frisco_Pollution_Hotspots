@@ -16,6 +16,10 @@ export default function NavBar({user}) {
         netlifyIdentity.open();
     }
 
+    const handleSignOut = () => {
+        netlifyIdentity.logout()
+    }
+
     const getProfilePic = () => {
         if(user && user.avatar_url) {
             return user.avatar_url;
@@ -46,8 +50,8 @@ export default function NavBar({user}) {
                         <ProfileImg src={getProfilePic()} />
                     </Profile>
                     <UserMenu ref={menuState ? menu : null} style={{display: menuState ? "flex" : "none", visibility: menuState ? "visible" : "hidden"}}>
-                        <h3>{`Welcome ${user.fullName.split(" ")[0]}`}</h3>
-                        <SignOutBtn>
+                        <h3>{`Welcome ${user.full_name.split(" ")[0]}`}</h3>
+                        <SignOutBtn onClick={handleSignOut}>
                             Sign Out
                         </SignOutBtn>
                     </UserMenu>
