@@ -140,12 +140,12 @@ export const UserMenu = styled.div`
   padding: 2px;
   
   &.setVisible {
-    animation: zoomOut 450ms;
+    animation: viewUserMenu 450ms;
     animation-fill-mode: forwards;
   }
   
   &.setInvisible {
-    animation: zoomIn 450ms;
+    animation: closeUserMenu 450ms;
     animation-fill-mode: forwards;
   }
   
@@ -154,7 +154,7 @@ export const UserMenu = styled.div`
     display: none;
   }
   
-  @keyframes zoomOut {
+  @keyframes viewUseMenu {
     0% {
       right: -20%;
       visibility: hidden;
@@ -170,7 +170,7 @@ export const UserMenu = styled.div`
     }
   }
 
-  @keyframes zoomIn {
+  @keyframes closeUserMenu {
     0% {
       height: 300px;
       visibility: visible;

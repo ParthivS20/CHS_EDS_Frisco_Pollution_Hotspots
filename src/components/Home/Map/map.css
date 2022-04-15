@@ -114,16 +114,16 @@
 }
 
 .map-selector.setVisible {
-  animation: zoomOut 300ms;
+  animation: viewMapSelector 300ms;
   animation-fill-mode: forwards;
 }
 
 .map-selector.setInvisible {
-  animation: zoomIn 300ms;
+  animation: closeMapSelector 300ms;
   animation-fill-mode: forwards;
 }
 
-@keyframes zoomOut {
+@keyframes viewMapSelector {
   from {
     transform: scale(0);
     opacity: 0;
@@ -135,7 +135,7 @@
   }
 }
 
-@keyframes zoomIn {
+@keyframes closeMapSelector {
   from {
     transform: scale(1);
     opacity: 100%;
