@@ -127,7 +127,7 @@ export const UserMenu = styled.div`
   position: fixed;
   z-index: 9;
   width: 275px;
-  height: 300px;
+  height: 40px;
   background: #343434;
   color: white;
   top: 80px;
@@ -140,14 +140,15 @@ export const UserMenu = styled.div`
   gap: 20px;
   animation-fill-mode: forwards;
   display: flex;
+  overflow: hidden;
   
   &.setVisible {
-    animation: zoomOut 300ms;
+    animation: zoomOut 450ms;
     animation-fill-mode: forwards;
   }
   
   &.setInvisible {
-    animation: zoomIn 300ms;
+    animation: zoomIn 450ms;
     animation-fill-mode: forwards;
   }
   
@@ -157,29 +158,33 @@ export const UserMenu = styled.div`
   }
   
   @keyframes zoomOut {
-    from {
-      transform: scale(0);
+    0% {
       right: -20%;
-      opacity: 0;
+      visibility: hidden;
     }
-    to {
-      transform: scale(1);
+    50% {
       right: 1%;
-      opacity: 100%;
+      visibility: visible;
+      height: 40px;
+    }
+    100% {
+      height: 300px;
       visibility: visible;
     }
   }
 
   @keyframes zoomIn {
-    from {
-      transform: scale(1);
-      right: 1%;
-      opacity: 100%;
+    0% {
+      height: 300px;
+      visibility: visible;
     }
-    to {
-      transform: scale(0);
+    50% {
+      right: 1%;
+      visibility: visible;
+      height: 40px;
+    }
+    100% {
       right: -20%;
-      opacity: 0;
       visibility: hidden;
     }
   }
