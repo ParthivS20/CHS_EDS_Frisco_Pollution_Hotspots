@@ -2,6 +2,7 @@ import React, {useRef, useState} from 'react';
 import netlifyIdentity from 'netlify-identity-widget'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmarkCircle } from "@fortawesome/free-solid-svg-icons";
+
 import {
     Nav,
     NavLink,
@@ -14,7 +15,6 @@ import {
     SignOutBtn,
     UserMenuExitBtn, UserMenuContent
 } from "./NavBarElements";
-
 import {ClickOutside} from "../../lib/ClickOutside";
 
 import profile from './profile.png'
@@ -29,7 +29,7 @@ export default function NavBar({user}) {
 
     const handleSignOut = () => {
         closeUserMenu()
-        setTimeout(() => netlifyIdentity.logout(), 450)
+        setTimeout(() => netlifyIdentity.logout(), 300)
     }
 
     const closeUserMenu = () => {

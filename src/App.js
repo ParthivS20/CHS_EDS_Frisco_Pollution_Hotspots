@@ -5,7 +5,6 @@ import netlifyIdentity from "netlify-identity-widget";
 import NavBar from "./components/NavBar";
 import SamplePage from "./pages/SamplePage";
 import Home from "./pages/Home";
-
 import {loginUser, logoutUser} from "./lib/identityActions";
 
 import "./App.css";

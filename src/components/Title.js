@@ -1,9 +1,9 @@
 import { Helmet } from 'react-helmet';
 
-export default function Title(props) {
+export default function Title({title}) {
     return (
         <Helmet>
-            <title>{props.title ? props.title + " | Frisco Pollution Hotspots" : "Frisco Pollution Hotspots"}</title>
+            <title>{title ? title + " | Frisco Pollution Hotspots" : "Frisco Pollution Hotspots"}</title>
         </Helmet>
     );
 }

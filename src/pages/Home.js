@@ -2,12 +2,12 @@ import React, {useCallback, useEffect, useRef, useState} from "react";
 
 import Title from "../components/Title";
 import Map from "../components/Home/Map";
-
-import {request} from "../lib/Api";
-import "../App.css";
 import MapList from "../components/Home/MapList";
+import {request} from "../lib/Api";
 
-export default function Home(props) {
+import "../App.css";
+
+export default function Home({title}) {
     const [loaded, setLoaded] = useState(false);
     const [locations, setLocations] = useState(null);
     const [selected, setSelected] = useState(null);
@@ -24,9 +24,7 @@ export default function Home(props) {
             // Haversine formula
             let dlon = lon2 - lon1;
             let dlat = lat2 - lat1;
-            let a = Math.pow(Math.sin(dlat / 2), 2)
-                + Math.cos(lat1) * Math.cos(lat2)
-                * Math.pow(Math.sin(dlon / 2), 2);
+            let a = Math.pow(Math.sin(dlat / 2), 2) + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin(dlon / 2), 2);
 
             let c = 2 * Math.asin(Math.sqrt(a));
 
@@ -73,13 +71,11 @@ export default function Home(props) {
             });
     }, []);
 
-    return (
-        <div className={"home-page"}>
-            <Title title={props.title}/>
+    return (<div className={"home-page"}>
+            <Title title={title}/>
             <Map loaded={loaded} locations={locations}
                  selected={selected} setSelected={setSelected} mapRef={mapRef} updateView={updateView}
                  setMapCenter={setMapCenter}/>
             <MapList loaded={loaded} locations={locations} setSelected={setSelected} updateView={updateView}/>
-        </div>
-    );
+        </div>);
 }

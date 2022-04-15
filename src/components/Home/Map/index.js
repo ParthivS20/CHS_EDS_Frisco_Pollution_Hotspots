@@ -7,6 +7,7 @@ import { faLayerGroup, faHome } from "@fortawesome/free-solid-svg-icons";
 import Loading from "./Loading";
 import MapMarker from "./MapMarker";
 import MapPopup from "./MapPopup";
+import {ClickOutside} from "../../../lib/ClickOutside";
 
 import dark from "./MapImages/dark.png"
 import light from "./MapImages/light.png"
@@ -16,7 +17,6 @@ import satellite from "./MapImages/satellite.png"
 import streets from "./MapImages/streets.png"
 
 import "./map.css";
-import {ClickOutside} from "../../../lib/ClickOutside";
 
 export default function Map({loaded, locations, selected, setSelected, mapRef, updateView, setMapCenter }) {
   const defaultMapView = {
