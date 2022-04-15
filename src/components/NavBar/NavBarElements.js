@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import {NavLink as Link} from "react-router-dom";
-import {faBars} from "@fortawesome/free-solid-svg-icons";
+import {FaBars} from "react-icons/fa"
 
 export const Nav = styled.nav`
   background: #000;
@@ -35,7 +35,7 @@ export const NavLink = styled(Link)`
     color: #b3ffc1;
   }
 `
-export const Bars = styled(faBars)`
+export const Bars = styled(FaBars)`
   display: none;
   color: #fff;
   
