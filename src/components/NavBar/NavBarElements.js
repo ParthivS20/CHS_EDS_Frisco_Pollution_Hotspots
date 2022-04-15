@@ -130,14 +130,60 @@ export const UserMenu = styled.div`
   height: 300px;
   background: #343434;
   color: white;
-  right: 1%;
   top: 80px;
+  right: 1%;
   border-radius: 15px;
   box-shadow: 0 2px 7px black;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 20px;
+  animation-fill-mode: forwards;
+  
+  &.setVisible {
+    animation: zoomOut 300ms;
+    animation-fill-mode: forwards;
+  }
+  
+  &.setInvisible {
+    animation: zoomIn 300ms;
+    animation-fill-mode: forwards;
+  }
+  
+  &.initial {
+    visibility: hidden;
+    display: none;
+  }
+  
+  @keyframes zoomOut {
+    from {
+      transform: scale(0);
+      right: -20%;
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      right: 1%;
+      opacity: 100%;
+      visibility: visible;
+      display: flex;
+    }
+  }
+
+  @keyframes zoomIn {
+    from {
+      transform: scale(1);
+      right: 1%;
+      opacity: 100%;
+    }
+    to {
+      transform: scale(0);
+      right: -20%;
+      opacity: 0;
+      visibility: hidden;
+      display: none;
+    }
+  }
 `
 
 export const UserMenuExitBtn = styled.div`

@@ -21,10 +21,14 @@ import profile from './profile.png'
 
 export default function NavBar({user}) {
     const [menuState, setMenuState] = useState(false);
+    const [userMenuAnimation, setUserMenuAnimation] = useState('initial');
 
     const menu = useRef(null);
     const profileBtn = useRef(null);
-    ClickOutside(menu, () => setMenuState(false), [profileBtn])
+    ClickOutside(menu, () => {
+        setMenuState(false)
+        setUserMenuAnimation('setInvisible')
+    }, [profileBtn])
 
     const handleSignIn = () => {
         netlifyIdentity.open();
@@ -60,10 +64,14 @@ export default function NavBar({user}) {
             </NavMenu>
             {user ?
                 <>
-                    <Profile onClick={() => setMenuState(!menuState)} ref={profileBtn}>
+                    <Profile onClick={() => {
+                        setMenuState(!menuState)
+                        if(menuState) setUserMenuAnimation('setInvisible')
+                        else setUserMenuAnimation('setVisible')
+                    }} ref={profileBtn}>
                         <ProfileImg src={getProfilePic()} />
                     </Profile>
-                    <UserMenu ref={menuState ? menu : null} style={{display:menuState ? "flex" : "none", visibility: menuState ? "visible" : "hidden"}}>
+                    <UserMenu ref={menuState ? menu : null} className={userMenuAnimation}>
                         <h3>{`Welcome, ${user.full_name.split(" ")[0]}`}</h3>
                         <SignOutBtn onClick={handleSignOut}>
                             Sign Out
