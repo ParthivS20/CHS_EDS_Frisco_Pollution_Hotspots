@@ -149,7 +149,6 @@ export const UserMenu = styled.div`
   &.setInvisible {
     animation: zoomIn 300ms;
     animation-fill-mode: forwards;
-    display: none;
   }
   
   &.initial {
