@@ -28,7 +28,8 @@ export default function NavBar({user}) {
     }
 
     const handleSignOut = () => {
-        netlifyIdentity.logout()
+        closeUserMenu()
+        setTimeout(() => netlifyIdentity.logout(), 450)
     }
 
     const closeUserMenu = () => {
