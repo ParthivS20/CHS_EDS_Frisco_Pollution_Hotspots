@@ -154,7 +154,7 @@ export const UserMenu = styled.div`
     display: none;
   }
   
-  @keyframes viewUseMenu {
+  @keyframes viewUserMenu {
     0% {
       right: -20%;
       visibility: hidden;
