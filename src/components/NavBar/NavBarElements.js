@@ -139,11 +139,11 @@ export const UserMenu = styled.div`
   justify-content: center;
   gap: 20px;
   animation-fill-mode: forwards;
+  display: flex;
   
   &.setVisible {
     animation: zoomOut 300ms;
     animation-fill-mode: forwards;
-    display: flex;
   }
   
   &.setInvisible {
