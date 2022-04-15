@@ -143,11 +143,13 @@ export const UserMenu = styled.div`
   &.setVisible {
     animation: zoomOut 300ms;
     animation-fill-mode: forwards;
+    display: flex;
   }
   
   &.setInvisible {
     animation: zoomIn 300ms;
     animation-fill-mode: forwards;
+    display: none;
   }
   
   &.initial {
@@ -166,7 +168,6 @@ export const UserMenu = styled.div`
       right: 1%;
       opacity: 100%;
       visibility: visible;
-      display: flex;
     }
   }
 
@@ -181,7 +182,6 @@ export const UserMenu = styled.div`
       right: -20%;
       opacity: 0;
       visibility: hidden;
-      display: none;
     }
   }
 `
