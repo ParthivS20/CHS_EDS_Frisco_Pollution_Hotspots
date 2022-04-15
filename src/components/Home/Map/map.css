@@ -126,9 +126,10 @@
 
 @keyframes viewMapSelector {
   0% {
-    transform: scale(0.01);
+    transform: scale(0);
     opacity: 0;
-    translateZ(1px)
+    visibility: hidden;
+    display: flex;
   }
   70% {
     transform: scale(1.18);
@@ -137,24 +138,22 @@
   100% {
     transform: scale(1);
     visibility: visible;
-    translateZ(1px)
+    display: flex;
   }
 }
 
 @keyframes closeMapSelector {
   0% {
     transform: scale(1);
-    translateZ(1px)
   }
   30% {
     transform: scale(1.18);
     opacity: 100%;
   }
   100% {
-    transform: scale(0.01);
+    transform: scale(0);
     opacity: 0;
     visibility: hidden;
-    translateZ(1px)
   }
 }
 
