@@ -23,13 +23,6 @@ export default function NavBar({user}) {
     const [menuState, setMenuState] = useState(false);
     const [userMenuAnimation, setUserMenuAnimation] = useState('initial');
 
-    const menu = useRef(null);
-    const profileBtn = useRef(null);
-    ClickOutside(menu, () => {
-        setMenuState(false)
-        setUserMenuAnimation('setInvisible')
-    }, [profileBtn])
-
     const handleSignIn = () => {
         netlifyIdentity.open();
     }
@@ -38,12 +31,28 @@ export default function NavBar({user}) {
         netlifyIdentity.logout()
     }
 
+    const closeUserMenu = () => {
+        setMenuState(false);
+        setUserMenuAnimation('setInvisible');
+    }
+
+    const toggleUserMenu = () => {
+        setMenuState(!menuState);
+        if(menuState) setUserMenuAnimation('setInvisible')
+        else setUserMenuAnimation('setVisible')
+    }
+
     const getProfilePic = () => {
         if(user && user.avatar_url) {
             return user.avatar_url;
         }
         return profile;
     }
+
+    const menu = useRef(null);
+    const profileBtn = useRef(null);
+
+    ClickOutside(menu, closeUserMenu, [profileBtn])
 
     return (
         <Nav>
@@ -64,11 +73,7 @@ export default function NavBar({user}) {
             </NavMenu>
             {user ?
                 <>
-                    <Profile onClick={() => {
-                        setMenuState(!menuState)
-                        if(menuState) setUserMenuAnimation('setInvisible')
-                        else setUserMenuAnimation('setVisible')
-                    }} ref={profileBtn}>
+                    <Profile onClick={toggleUserMenu} ref={profileBtn}>
                         <ProfileImg src={getProfilePic()} />
                     </Profile>
                     <UserMenu ref={menuState ? menu : null} className={userMenuAnimation}>
@@ -76,9 +81,7 @@ export default function NavBar({user}) {
                         <SignOutBtn onClick={handleSignOut}>
                             Sign Out
                         </SignOutBtn>
-                        <UserMenuExitBtn onClick={() => {
-                            setMenuState(false)
-                        }}>
+                        <UserMenuExitBtn onClick={closeUserMenu}>
                             <FontAwesomeIcon icon={faXmarkCircle} />
                         </UserMenuExitBtn>
                     </UserMenu>

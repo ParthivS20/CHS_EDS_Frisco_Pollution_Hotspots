@@ -26,11 +26,8 @@ export default function Map({loaded, locations, selected, setSelected, mapRef, u
   };
 
   const [mapMode, setMapMode] = useState("dark");
-  const [viewMapModeSelector, setViewMapModeSelector] = useState(false);
-
-  const mapModeSelector = useRef(null);
-  const layerBtn = useRef(null);
-  ClickOutside(mapModeSelector, () => setViewMapModeSelector(false), [layerBtn])
+  const [viewMapSelector, setViewMapSelector] = useState(false);
+  const [mapSelectorAnimation, setMapSelectorAnimation] = useState('initial');
 
   const closePopup = () => {
     setSelected(null);
@@ -39,6 +36,21 @@ export default function Map({loaded, locations, selected, setSelected, mapRef, u
   const openPopup = (location) => {
     setSelected(location);
   };
+
+  const closeMapSelector = () => {
+    setViewMapSelector(false);
+    setMapSelectorAnimation('setInvisible')
+  }
+
+  const toggleMapSelector = () => {
+    setViewMapSelector(!viewMapSelector);
+    if(viewMapSelector) setMapSelectorAnimation('setInvisible')
+    else setMapSelectorAnimation('setVisible')
+  }
+
+  const mapModeSelector = useRef(null);
+  const layerBtn = useRef(null);
+  ClickOutside(mapModeSelector, closeMapSelector, [layerBtn])
 
   useEffect(() => {
     setMapCenter([defaultMapView.longitude, defaultMapView.latitude])
@@ -111,7 +123,7 @@ export default function Map({loaded, locations, selected, setSelected, mapRef, u
                 )}
               </ReactMapGl>
               <div className={"map-btn-container"}>
-                <div className={'map-selector'} style={{display:viewMapModeSelector ? "flex" : "none", visibility: viewMapModeSelector ? "visible" : "hidden"}} ref={viewMapModeSelector ? mapModeSelector : null}>
+                <div className={'map-selector ' + mapSelectorAnimation}>
                   {
                     Object.keys(mapStyles).map((key, i) => {
                       return (
@@ -129,9 +141,7 @@ export default function Map({loaded, locations, selected, setSelected, mapRef, u
                   }
                 </div>
                 <button
-                    onClick={() => {
-                      setViewMapModeSelector(!viewMapModeSelector)
-                    }}
+                    onClick={toggleMapSelector}
                     className="map-btn"
                     ref={layerBtn}
                 >

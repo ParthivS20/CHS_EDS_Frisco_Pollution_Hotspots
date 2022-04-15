@@ -104,6 +104,47 @@
   flex-direction: row;
   gap: 0;
   padding: 2px;
+  animation-fill-mode: forwards;
+  display: flex;
+}
+
+.map-selector.initial {
+  visibility: hidden;
+  display: none;
+}
+
+.map-selector.setVisible {
+  animation: zoomOut 300ms;
+  animation-fill-mode: forwards;
+}
+
+.map-selector.setInvisible {
+  animation: zoomIn 300ms;
+  animation-fill-mode: forwards;
+}
+
+@keyframes zoomOut {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 100%;
+    visibility: visible;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(1);
+    opacity: 100%;
+  }
+  to {
+    transform: scale(0);
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 
 .map-option {
