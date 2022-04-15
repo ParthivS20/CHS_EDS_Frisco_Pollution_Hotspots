@@ -40,7 +40,6 @@ export default function Map({loaded, locations, selected, setSelected, mapRef, u
   const closeMapSelector = () => {
     setViewMapSelector(false);
     setMapSelectorAnimation('setInvisible')
-    console.log(1)
   }
 
   const toggleMapSelector = () => {
