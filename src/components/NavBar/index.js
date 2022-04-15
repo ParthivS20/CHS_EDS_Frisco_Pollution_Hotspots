@@ -34,7 +34,7 @@ export default function NavBar({user}) {
 
     const closeUserMenu = () => {
         setMenuState(false);
-        setUserMenuAnimation('setInvisible');
+        if(userMenuAnimation !== 'initial') setUserMenuAnimation('setInvisible');
     }
 
     const toggleUserMenu = () => {
