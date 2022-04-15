@@ -136,11 +136,11 @@ export const UserMenu = styled.div`
   box-shadow: 0 2px 7px black;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   gap: 20px;
   animation-fill-mode: forwards;
   display: flex;
   overflow: hidden;
+  padding: 2px;
   
   &.setVisible {
     animation: zoomOut 450ms;
@@ -213,7 +213,9 @@ export const SignOutBtn = styled.button`
   padding: 7px;
   border-radius: 4px;
   transition-duration: 200ms;
-
+  margin-top: auto;
+  margin-bottom: auto;
+  
   &:hover {
     background-color: #a90000;
   }
