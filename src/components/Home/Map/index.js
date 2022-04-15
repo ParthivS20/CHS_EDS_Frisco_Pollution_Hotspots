@@ -40,6 +40,7 @@ export default function Map({loaded, locations, selected, setSelected, mapRef, u
   const closeMapSelector = () => {
     setViewMapSelector(false);
     setMapSelectorAnimation('setInvisible')
+    console.log(1)
   }
 
   const toggleMapSelector = () => {
@@ -123,7 +124,7 @@ export default function Map({loaded, locations, selected, setSelected, mapRef, u
                 )}
               </ReactMapGl>
               <div className={"map-btn-container"}>
-                <div className={'map-selector ' + mapSelectorAnimation}>
+                <div ref={mapModeSelector} className={'map-selector ' + mapSelectorAnimation}>
                   {
                     Object.keys(mapStyles).map((key, i) => {
                       return (
