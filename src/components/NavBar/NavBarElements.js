@@ -134,11 +134,8 @@ export const UserMenu = styled.div`
   right: 1%;
   border-radius: 15px;
   box-shadow: 0 2px 7px black;
-  flex-direction: column;
-  align-items: center;
   gap: 20px;
   animation-fill-mode: forwards;
-  display: flex;
   overflow: hidden;
   padding: 2px;
   
@@ -190,6 +187,16 @@ export const UserMenu = styled.div`
   }
 `
 
+export const UserMenuContent = styled.div`
+  position: absolute;
+  height: 300px;
+  width: 275px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+
 export const UserMenuExitBtn = styled.div`
   position: absolute;
   top: 3%;
@@ -213,8 +220,6 @@ export const SignOutBtn = styled.button`
   padding: 7px;
   border-radius: 4px;
   transition-duration: 200ms;
-  margin-top: auto;
-  margin-bottom: auto;
   
   &:hover {
     background-color: #a90000;

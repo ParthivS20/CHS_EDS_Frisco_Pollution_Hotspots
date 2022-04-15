@@ -12,7 +12,7 @@ import {
     ProfileImg,
     UserMenu,
     SignOutBtn,
-    UserMenuExitBtn
+    UserMenuExitBtn, UserMenuContent
 } from "./NavBarElements";
 
 import {ClickOutside} from "../../lib/ClickOutside";
@@ -77,13 +77,15 @@ export default function NavBar({user}) {
                         <ProfileImg src={getProfilePic()} />
                     </Profile>
                     <UserMenu ref={menuState ? menu : null} className={userMenuAnimation}>
-                        <h3>{`Welcome, ${user.full_name.split(" ")[0]}`}</h3>
-                        <SignOutBtn onClick={handleSignOut}>
-                            Sign Out
-                        </SignOutBtn>
-                        <UserMenuExitBtn onClick={closeUserMenu}>
-                            <FontAwesomeIcon icon={faXmarkCircle} />
-                        </UserMenuExitBtn>
+                        <UserMenuContent>
+                            <h3>{`Welcome, ${user.full_name.split(" ")[0]}`}</h3>
+                            <SignOutBtn onClick={handleSignOut}>
+                                Sign Out
+                            </SignOutBtn>
+                            <UserMenuExitBtn onClick={closeUserMenu}>
+                                <FontAwesomeIcon icon={faXmarkCircle} />
+                            </UserMenuExitBtn>
+                        </UserMenuContent>
                     </UserMenu>
                 </>
                 :
