@@ -16,8 +16,12 @@ export default function ContactForm({userEmail}) {
 
     return (
         <div className={'contact-form-wrapper'}>
-            <form name="Contact" method="post">
+            <form name="Contact" method="post" action={'/contact-form-success'}>
                 <input type="hidden" name="form-name" value="Contact" />
+                <div className={'contact-form-header'}>
+                    <h1>HAVE SOME QUESTIONS?</h1>
+                    <h2>Get In Touch!</h2>
+                </div>
                 <div className={'contact-form'}>
                     <div>
                         <input type="text" name="First Name" placeholder={'First Name'} className={'input-t1'} required/>

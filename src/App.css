@@ -38,4 +38,9 @@ body {
   align-items: center;
   width: 100%;
   height: calc(100vh - 80px);
+  gap: 80px;
+}
+
+.contact-form-success {
+  color: white;
 }

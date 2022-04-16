@@ -3,12 +3,13 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import netlifyIdentity from "netlify-identity-widget";
 
 import NavBar from "./components/NavBar";
-import SamplePage from "./pages/SamplePage";
 import Home from "./pages/Home";
+import Contact from "./pages/Contact";
+import ContactFormSuccess from "./pages/ContactFormSuccess";
+import SamplePage from "./pages/SamplePage";
 import {loginUser, logoutUser} from "./lib/identityActions";
 
 import "./App.css";
-import Contact from "./pages/Contact";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -39,7 +40,8 @@ function App() {
         <NavBar user={user}/>
         <Routes>
           <Route path={"/"} exact element={<Home />} />
-          <Route path={"/contact"} element={<Contact />} />
+          <Route path={"/contact"} element={<Contact userEmail={user ? user.email : ''}/>} />
+          <Route path={"/contact-form-success"} element={<ContactFormSuccess />} />
           <Route
             path="*"
             element={<SamplePage title={"404"}>404 Page Not Found</SamplePage>}
