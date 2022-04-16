@@ -16,21 +16,21 @@ export default function ContactForm({userEmail}) {
 
     return (
         <div className={'contact-form-wrapper'}>
-            <form name="contact" method="post" id={'contact-form'}>
-                <input type="hidden" name="form-name" value="contact" />
+            <form name="Contact" method="post">
+                <input type="hidden" name="form-name" value="Contact" />
                 <div className={'contact-form'}>
                     <div>
-                        <input type="text" name="firstname" placeholder={'First Name'} className={'input-t1'} required/>
-                        <input type="text" name="lastname" placeholder={'Last Name'} className={'input-t1'} required/>
+                        <input type="text" name="First Name" placeholder={'First Name'} className={'input-t1'} required/>
+                        <input type="text" name="Last Name" placeholder={'Last Name'} className={'input-t1'} required/>
                     </div>
                     <div>
-                        <input type="email" name="email" placeholder={'Email'} className={'input-t1'} required value={email} onChange={ e => {
+                        <input type="email" name="Email" placeholder={'Email'} className={'input-t1'} required value={email} onChange={ e => {
                             if(!isEmail) setEmail(e.target.value)
                         }}/>
-                        <input type="tel" name="phone" placeholder={'Phone'} className={'input-t1'}/>
+                        <input type="tel" name="Phone" placeholder={'Phone'} className={'input-t1'}/>
                     </div>
                     <div>
-                        <textarea name="message" placeholder={'Message'} className={'input-t2'} required/>
+                        <textarea name="Message" placeholder={'Message'} className={'input-t2'} required/>
                     </div>
                     <div>
                         <button type="submit" className={'submit'}>SUBMIT</button>
