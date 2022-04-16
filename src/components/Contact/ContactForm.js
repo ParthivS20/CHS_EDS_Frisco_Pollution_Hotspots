@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from "react";
 import { useNavigate } from 'react-router-dom';
 
+import Title from "../../lib/Title";
+
 import "./contact.css"
 
 export default function ContactForm({userEmail}) {
@@ -34,6 +36,7 @@ export default function ContactForm({userEmail}) {
 
     return (
         <div className={'contact-form-wrapper'}>
+            <Title title={"Contact"} />
             <form name="Contact" onSubmit={e => {
                 e.preventDefault()
                 handleSubmit(e.target)
