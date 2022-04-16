@@ -1,0 +1,79 @@
+.contact-form-wrapper {
+    width: 650px;
+    height: 570px;
+    color: white;
+    background: #a4ffb5;
+    box-shadow: -36px -36px 0 -15px #00ff3d, 36px 36px 0 -15px #003f10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-form-wrapper input {
+    background-color: rgba(13, 138, 8, 0.44);
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    color: gray;
+    padding: 10px;
+    color: black;
+}
+
+.contact-form-wrapper textarea {
+    background-color: rgba(13, 138, 8, 0.44);
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    color: gray;
+    padding: 12px 12px 12px 12px;
+    resize: none;
+    color: black;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.contact-form div {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    overflow: visible;
+}
+
+.input-t1{
+    height: 60px;
+    width: 270px;
+    font-size: 19px;
+}
+
+.input-t2 {
+    height: 190px;
+    width: 100%;
+    font-size: 17px;
+}
+
+::placeholder {
+    color: rgba(65, 65, 65, 0.56);
+}
+
+.submit {
+    margin-top: -10px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    background-color: #298585;
+    height: 40px;
+    width: 105px;
+    padding: 7px;
+    color: white;
+    font-size: 16px;
+    transition-duration: 200ms;
+}
+
+.submit:hover {
+    background-color: #3dd3d3;
+}

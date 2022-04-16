@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useRef, useState} from "react";
 
-import Title from "../components/Title";
+import Title from "../lib/Title";
 import Map from "../components/Home/Map";
 import MapList from "../components/Home/MapList";
 import {request} from "../lib/Api";

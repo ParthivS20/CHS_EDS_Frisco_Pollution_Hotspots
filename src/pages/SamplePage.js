@@ -1,6 +1,6 @@
 import React from "react";
 
-import Title from "../components/Title";
+import Title from "../lib/Title";
 
 export default function SamplePage({title, children}) {
     return (

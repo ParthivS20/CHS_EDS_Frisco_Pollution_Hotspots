@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import {loginUser, logoutUser} from "./lib/identityActions";
 
 import "./App.css";
+import Contact from "./pages/Contact";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -38,6 +39,7 @@ function App() {
         <NavBar user={user}/>
         <Routes>
           <Route path={"/"} exact element={<Home />} />
+          <Route path={"/contact"} element={<Contact />} />
           <Route
             path="*"
             element={<SamplePage title={"404"}>404 Page Not Found</SamplePage>}
