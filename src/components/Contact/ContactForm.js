@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from "react";
+import { useNavigate } from 'react-router-dom';
 
 import "./contact.css"
 
 export default function ContactForm({userEmail}) {
     const [email, setEmail] = useState('');
     const [isEmail, setIsEmail] = useState(false);
+    let navigate = useNavigate();
 
     useEffect(() => {
         const emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -20,9 +22,12 @@ export default function ContactForm({userEmail}) {
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: new URLSearchParams(new FormData(form)).toString(),
         })
-            .then(() => console.log("good"))
+            .then(() => {
+                navigate("/contact-form-success")
+            })
             .catch(error => {
-                console.log(error)
+                console.error(error)
+                navigate("/contact-form-error")
             });
     };
 
