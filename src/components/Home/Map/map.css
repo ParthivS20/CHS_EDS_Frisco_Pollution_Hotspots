@@ -1,9 +1,8 @@
 .map {
   display: inline-block;
   position: relative;
-  margin: 10px;
   height: calc(85vh + 7px);
-  width: calc(72vw + 5px);
+  width: calc(68vw + 5px);
   border-radius: 25px;
   border: solid 4px #15fc4b;
   overflow: hidden;

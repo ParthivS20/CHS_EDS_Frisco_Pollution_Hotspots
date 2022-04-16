@@ -10,6 +10,7 @@ import SamplePage from "./pages/SamplePage";
 import {loginUser, logoutUser} from "./lib/identityActions";
 
 import "./App.css";
+import ContactFormError from "./pages/ContactFormError";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -42,6 +43,7 @@ function App() {
           <Route path={"/"} exact element={<Home />} />
           <Route path={"/contact"} element={<Contact userEmail={user ? user.email : ''}/>} />
           <Route path={"/contact-form-success"} element={<ContactFormSuccess />} />
+          <Route path={"/contact-form-error"} element={<ContactFormError />} />
           <Route
             path="*"
             element={<SamplePage title={"404"}>404 Page Not Found</SamplePage>}

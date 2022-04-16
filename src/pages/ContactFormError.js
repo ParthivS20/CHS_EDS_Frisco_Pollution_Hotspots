@@ -4,10 +4,10 @@ import ReturnToHomeBtn from "../lib/ReturnToHomeBtn";
 
 import "../App.css"
 
-export default function ContactFormSuccess() {
+export default function ContactFormError() {
     return (
-        <div className={'contact-form-success'}>
-            <h1>Thank You! Your form has successfully been submitted.</h1>
+        <div className={'contact-form-error'}>
+            <h1>The form did not submit properly. Please try again later.</h1>
             <ReturnToHomeBtn />
         </div>
     )

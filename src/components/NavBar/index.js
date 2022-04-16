@@ -62,8 +62,8 @@ export default function NavBar({user}) {
             </NavLink>
             <Bars/>
             <NavMenu>
-                <NavLink to={'/mission'} activestyle={''}>
-                    Mission
+                <NavLink to={'/about'} activestyle={''}>
+                    About
                 </NavLink>
                 <NavLink to={'/opportunities'} activestyle={''}>
                     Opportunities

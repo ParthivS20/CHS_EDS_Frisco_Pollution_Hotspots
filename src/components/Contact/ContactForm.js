@@ -22,8 +22,9 @@ export default function ContactForm({userEmail}) {
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: new URLSearchParams(new FormData(form)).toString(),
         })
-            .then(() => {
-                navigate("/contact-form-success")
+            .then(response => {
+                if(response.ok) navigate("/contact-form-success")
+                else navigate("/contact-form-error")
             })
             .catch(error => {
                 console.error(error)

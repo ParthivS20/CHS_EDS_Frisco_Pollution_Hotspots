@@ -1,8 +1,8 @@
 .map-list-container {
     overflow: hidden;
-    margin-right: 15px;
     background-color: #a4ffb5;
     width: 24vw;
+    height: calc(85vh + 7px);
     padding: 7px 0 20px 7px;
     border-radius: 10px;
 }
