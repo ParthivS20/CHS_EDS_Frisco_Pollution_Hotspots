@@ -7,7 +7,7 @@ import {request} from "../lib/Api";
 
 import "../App.css";
 
-export default function Home({mapLocations, setMapLocations, mapMode, setMapMode, mapViewState, setMapViewState, selectedLocation, setSelectedLocation}) {
+export default function Home({mapLocations, setMapLocations, mapMode, setMapMode, mapViewState, setMapViewState, selectedLocation, setSelectedLocation, defaultMapView}) {
     const [loaded, setLoaded] = useState(true);
     const [mapCenter, setMapCenter] = useState();
     const mapRef = useRef(null);
@@ -79,7 +79,7 @@ export default function Home({mapLocations, setMapLocations, mapMode, setMapMode
             <Title />
             <Map loaded={loaded} mapLocations={mapLocations}
                  selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} mapRef={mapRef} updateView={updateView}
-                 setMapCenter={setMapCenter} mapMode={mapMode} setMapMode={setMapMode} mapViewState={mapViewState} setMapViewState={setMapViewState}/>
+                 setMapCenter={setMapCenter} mapMode={mapMode} setMapMode={setMapMode} mapViewState={mapViewState} setMapViewState={setMapViewState} defaultMapView={defaultMapView}/>
             <MapList loaded={loaded} mapLocations={mapLocations} setSelectedLocation={setSelectedLocation} updateView={updateView}/>
         </div>
     );

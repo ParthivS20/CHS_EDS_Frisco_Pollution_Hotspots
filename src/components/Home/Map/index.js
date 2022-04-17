@@ -29,13 +29,10 @@ export default function Map({
                                 mapMode,
                                 setMapMode,
                                 mapViewState,
-                                setMapViewState
+                                setMapViewState,
+                                defaultMapView
                             }) {
-    const defaultMapView = {
-        latitude: 33.1499819, longitude: -96.8340679, zoom: 11.45
-    };
-
-    const [viewMapSelector, setViewMapSelector] = useState(false);
+        const [viewMapSelector, setViewMapSelector] = useState(false);
     const [mapSelectorAnimation, setMapSelectorAnimation] = useState('initial');
 
     const closePopup = useCallback(() => {

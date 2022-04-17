@@ -15,13 +15,13 @@ import "./App.css";
 function App() {
     const [user, setUser] = useState(null);
 
+    const defaultMapView = {
+        latitude: 33.1499819, longitude: -96.8340679, zoom: 11.45
+    };
+
     const [mapLocations, setMapLocations] = useState(null);
     const [mapMode, setMapMode] = useState('dark');
-    const [mapViewState, setMapViewState] = useState({
-        latitude: 33.1499819,
-        longitude: -96.8340679,
-        zoom: 11.45
-    })
+    const [mapViewState, setMapViewState] = useState(defaultMapView)
     const [selectedLocation, setSelectedLocation] = useState(null);
 
     useEffect(() => {
@@ -54,7 +54,7 @@ function App() {
                                                            mapViewState={mapViewState}
                                                            setMapViewState={setMapViewState}
                                                            selectedLocation={selectedLocation}
-                                                           setSelectedLocation={setSelectedLocation}/>}/>
+                                                           setSelectedLocation={setSelectedLocation} defaultMapView={defaultMapView}/>}/>
                     <Route path={"/contact"} element={<Contact userEmail={user ? user.email : ''}/>}/>
                     <Route path={"/contact-form-success"} element={<ContactFormSuccess/>}/>
                     <Route path={"/contact-form-error"} element={<ContactFormError/>}/>
