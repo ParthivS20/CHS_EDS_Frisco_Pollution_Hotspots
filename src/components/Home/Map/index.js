@@ -1,8 +1,8 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useCallback, useEffect, useMemo, useRef, useState} from "react";
 import ReactMapGl from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLayerGroup, faHome } from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faHome, faLayerGroup} from "@fortawesome/free-solid-svg-icons";
 
 import Loading from "./Loading";
 import MapMarker from "./MapMarker";
@@ -18,148 +18,126 @@ import streets from "./MapImages/streets.png"
 
 import "./map.css";
 
-export default function Map({loaded, locations, selected, setSelected, mapRef, updateView, setMapCenter }) {
-  const defaultMapView = {
-    latitude: 33.1499819,
-    longitude: -96.8340679,
-    zoom: 11.45
-  };
+export default function Map({
+                                loaded,
+                                mapLocations,
+                                selectedLocation,
+                                setSelectedLocation,
+                                mapRef,
+                                updateView,
+                                setMapCenter,
+                                mapMode,
+                                setMapMode,
+                                mapViewState,
+                                setMapViewState
+                            }) {
+    const defaultMapView = {
+        latitude: 33.1499819, longitude: -96.8340679, zoom: 11.45
+    };
 
-  const [mapMode, setMapMode] = useState("dark");
-  const [viewMapSelector, setViewMapSelector] = useState(false);
-  const [mapSelectorAnimation, setMapSelectorAnimation] = useState('initial');
+    const [viewMapSelector, setViewMapSelector] = useState(false);
+    const [mapSelectorAnimation, setMapSelectorAnimation] = useState('initial');
 
-  const closePopup = () => {
-    setSelected(null);
-  };
+    const closePopup = useCallback(() => {
+        setSelectedLocation(null);
+    }, [setSelectedLocation]);
 
-  const openPopup = (location) => {
-    setSelected(location);
-  };
+    const openPopup = useCallback((location) => {
+        setSelectedLocation(location);
+    }, [setSelectedLocation]);
 
-  const closeMapSelector = () => {
-    setViewMapSelector(false);
-    if(mapSelectorAnimation !== 'initial') setMapSelectorAnimation('setInvisible')
-  }
+    const closeMapSelector = useCallback(() => {
+        setViewMapSelector(false);
+        if (mapSelectorAnimation !== 'initial') setMapSelectorAnimation('setInvisible');
+    },[mapSelectorAnimation]);
 
-  const toggleMapSelector = () => {
-    setViewMapSelector(!viewMapSelector);
-    if(viewMapSelector) setMapSelectorAnimation('setInvisible')
-    else setMapSelectorAnimation('setVisible')
-  }
+    const toggleMapSelector = useCallback(() => {
+        setViewMapSelector(!viewMapSelector);
+        if (viewMapSelector) setMapSelectorAnimation('setInvisible'); else setMapSelectorAnimation('setVisible');
+    },[viewMapSelector]);
 
-  const mapModeSelector = useRef(null);
-  const layerBtn = useRef(null);
-  ClickOutside(mapModeSelector, closeMapSelector, [layerBtn])
+    const mapModeSelector = useRef(null);
+    const layerBtn = useRef(null);
+    ClickOutside(mapModeSelector, closeMapSelector, [layerBtn])
 
-  useEffect(() => {
-    setMapCenter([defaultMapView.longitude, defaultMapView.latitude])
-  }, [defaultMapView.latitude, defaultMapView.longitude, setMapCenter])
+    useEffect(() => {
+        setMapCenter([defaultMapView.longitude, defaultMapView.latitude])
+    }, [defaultMapView.latitude, defaultMapView.longitude, setMapCenter])
 
-  const mapStyles = {
-    streets: {
-      style: 'mapbox://styles/mapbox/streets-v11',
-      thumbnail: streets,
-      name: 'Map',
-    },
-    light: {
-      style: 'mapbox://styles/mapbox/light-v10',
-      thumbnail: light,
-      name: 'Light',
-    },
-    dark: {
-      style: 'mapbox://styles/mapbox/dark-v10',
-      thumbnail: dark,
-      name: 'Dark',
-    },
-    satelliteStreets: {
-      style: 'mapbox://styles/mapbox/satellite-streets-v11',
-      thumbnail: satellite,
-      name: 'Satellite',
-    },
-    navigationDay: {
-      style: 'mapbox://styles/mapbox/navigation-day-v1',
-      thumbnail: navigationDay,
-      name: 'Navigation Day',
-    },
-    navigationNight: {
-      style: 'mapbox://styles/mapbox/navigation-night-v1',
-      thumbnail: navigationNight,
-      name: 'Navigation Night',
+    const markers = useMemo(() => mapLocations?.map((l) =>
+            <MapMarker key={l.name} location={l} openPopup={openPopup}/>
+    ), [mapLocations]);
+
+    const mapStyles = {
+        streets: {
+            style: 'mapbox://styles/mapbox/streets-v11', thumbnail: streets, name: 'Map',
+        }, light: {
+            style: 'mapbox://styles/mapbox/light-v10', thumbnail: light, name: 'Light',
+        }, dark: {
+            style: 'mapbox://styles/mapbox/dark-v10', thumbnail: dark, name: 'Dark',
+        }, satelliteStreets: {
+            style: 'mapbox://styles/mapbox/satellite-streets-v11', thumbnail: satellite, name: 'Satellite',
+        }, navigationDay: {
+            style: 'mapbox://styles/mapbox/navigation-day-v1', thumbnail: navigationDay, name: 'Navigation Day',
+        }, navigationNight: {
+            style: 'mapbox://styles/mapbox/navigation-night-v1', thumbnail: navigationNight, name: 'Navigation Night',
+        }
     }
-  }
 
-  return (
-    <div className={"map"}>
-      {loaded ?
-          (
-            <div className="map-wrapper">
-              <ReactMapGl
-                  ref={mapRef}
-                  initialViewState={defaultMapView}
-                  mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-                  style={{
-                    width: "72vw",
-                    height: "85vh"
-                  }}
-                  mapStyle={mapStyles[mapMode].style}
-                  onMove={evt => {
+    return (<div className={"map"}>
+        {loaded ? (<div className="map-wrapper">
+            <ReactMapGl
+                {...mapViewState}
+                ref={mapRef}
+                mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+                style={{
+                    width: "72vw", height: "85vh"
+                }}
+                mapStyle={mapStyles[mapMode].style}
+                onMove={evt => {
                     setMapCenter([evt.viewState.longitude, evt.viewState.latitude]);
-                  }}
-              >
-                {locations &&
-                    locations.map((l) => {
-                      return (
-                          <MapMarker key={l.name} location={l} openPopup={openPopup} />
-                      );
-                    })}
-
-                {selected && (
-                    <MapPopup
-                        location={selected}
-                        openPopup={openPopup}
-                        closePopup={closePopup}
-                    />
-                )}
-              </ReactMapGl>
-              <div className={"map-btn-container"}>
+                    setMapViewState(evt.viewState);
+                }}
+                reuseMaps={true}
+            >
+                {mapLocations && markers}
+                {selectedLocation && (<MapPopup
+                    location={selectedLocation}
+                    openPopup={openPopup}
+                    closePopup={closePopup}
+                />)}
+            </ReactMapGl>
+            <div className={"map-btn-container"}>
                 <div ref={mapModeSelector} className={'map-selector ' + mapSelectorAnimation}>
-                  {
-                    Object.keys(mapStyles).map((key, i) => {
-                      return (
-                          <div className={'map-option'} key={i}>
+                    {Object.keys(mapStyles).map((key, i) => {
+                        return (<div className={'map-option'} key={i}>
                             <div className={'map-option-img'}
                                  onClick={() => setMapMode(key)}
-                                 style={{borderColor: mapMode === key ? "#00fff1": "white", backgroundColor: mapMode === key ? "#00FFF1FF": "white"}}
+                                 style={{
+                                     borderColor: mapMode === key ? "#00fff1" : "white",
+                                     backgroundColor: mapMode === key ? "#00FFF1FF" : "white"
+                                 }}
                             >
-                              <img src={mapStyles[key].thumbnail} alt={key}/>
+                                <img src={mapStyles[key].thumbnail} alt={key}/>
                             </div>
                             <span className={'map-mode-text'}>{mapStyles[key].name}</span>
-                          </div>
-                      )
-                    })
-                  }
+                        </div>)
+                    })}
                 </div>
                 <button
                     onClick={toggleMapSelector}
                     className="map-btn"
                     ref={layerBtn}
                 >
-                  <FontAwesomeIcon icon={faLayerGroup} />
+                    <FontAwesomeIcon icon={faLayerGroup}/>
                 </button>
                 <button
                     onClick={() => updateView(defaultMapView.longitude, defaultMapView.latitude)}
                     className="map-btn"
                 >
-                  <FontAwesomeIcon icon={faHome} />
+                    <FontAwesomeIcon icon={faHome}/>
                 </button>
-              </div>
             </div>
-          )
-          :
-          (
-            <Loading />
-          )}
-    </div>
-  );
+        </div>) : (<Loading/>)}
+    </div>);
 }

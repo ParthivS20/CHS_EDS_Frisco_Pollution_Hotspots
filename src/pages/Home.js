@@ -7,10 +7,8 @@ import {request} from "../lib/Api";
 
 import "../App.css";
 
-export default function Home({title}) {
-    const [loaded, setLoaded] = useState(false);
-    const [locations, setLocations] = useState(null);
-    const [selected, setSelected] = useState(null);
+export default function Home({mapLocations, setMapLocations, mapMode, setMapMode, mapViewState, setMapViewState, selectedLocation, setSelectedLocation}) {
+    const [loaded, setLoaded] = useState(true);
     const [mapCenter, setMapCenter] = useState();
     const mapRef = useRef(null);
 
@@ -43,12 +41,17 @@ export default function Home({title}) {
             return 1500 + distance / 6;
         }
 
-        setSelected(null);
+        setSelectedLocation(null);
         mapRef.current?.flyTo({center: [longitude, latitude], zoom: zoom ? zoom : 11.45, duration: timeScaler()});
         getDistance()
-    }, [mapCenter]);
+    }, [mapCenter, setSelectedLocation]);
 
     useEffect(() => {
+        if(mapLocations) {
+            setLoaded(true);
+            return;
+        }
+
         setLoaded(false);
         request("cleanup-locations")
             .then((response) => {
@@ -61,7 +64,7 @@ export default function Home({title}) {
                 throw response;
             })
             .then((data) => {
-                setLocations(data);
+                setMapLocations(data);
             })
             .catch((error) => {
                 setTimeout(() => {
@@ -71,11 +74,13 @@ export default function Home({title}) {
             });
     }, []);
 
-    return (<div className={"home-page"}>
-            <Title title={title}/>
-            <Map loaded={loaded} locations={locations}
-                 selected={selected} setSelected={setSelected} mapRef={mapRef} updateView={updateView}
-                 setMapCenter={setMapCenter}/>
-            <MapList loaded={loaded} locations={locations} setSelected={setSelected} updateView={updateView}/>
-        </div>);
+    return (
+        <div className={"home-page"}>
+            <Title />
+            <Map loaded={loaded} mapLocations={mapLocations}
+                 selectedLocation={selectedLocation} setSelectedLocation={setSelectedLocation} mapRef={mapRef} updateView={updateView}
+                 setMapCenter={setMapCenter} mapMode={mapMode} setMapMode={setMapMode} mapViewState={mapViewState} setMapViewState={setMapViewState}/>
+            <MapList loaded={loaded} mapLocations={mapLocations} setSelectedLocation={setSelectedLocation} updateView={updateView}/>
+        </div>
+    );
 }
