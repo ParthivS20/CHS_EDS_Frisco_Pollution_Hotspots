@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import { useNavigate } from 'react-router-dom';
 
 import Title from "../../lib/Title";
@@ -18,7 +18,7 @@ export default function ContactForm({userEmail}) {
         }
     }, [userEmail])
 
-    const handleSubmit = form => {
+    const handleSubmit = useCallback(form => {
         fetch('/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -32,7 +32,7 @@ export default function ContactForm({userEmail}) {
                 console.error(error)
                 navigate("/contact-form-error")
             });
-    };
+    }, [navigate]);
 
     return (
         <div className={'contact-form-wrapper'}>

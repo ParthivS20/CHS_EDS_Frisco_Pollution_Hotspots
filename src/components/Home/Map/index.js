@@ -66,7 +66,7 @@ export default function Map({
 
     const markers = useMemo(() => mapLocations?.map((l) =>
             <MapMarker key={l.name} location={l} openPopup={openPopup}/>
-    ), [mapLocations]);
+    ), [mapLocations, openPopup]);
 
     const mapStyles = {
         streets: {
