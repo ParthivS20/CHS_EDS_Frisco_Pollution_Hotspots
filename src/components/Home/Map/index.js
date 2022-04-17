@@ -91,7 +91,7 @@ export default function Map({
                 ref={mapRef}
                 mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
                 style={{
-                    width: "72vw", height: "85vh"
+                    width: "65vw", height: "85vh"
                 }}
                 mapStyle={mapStyles[mapMode].style}
                 onMove={evt => {
