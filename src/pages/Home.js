@@ -7,6 +7,7 @@ import {request} from "../lib/Api";
 
 import "../App.css";
 
+
 export default function Home({mapLocations, setMapLocations, mapMode, setMapMode, mapViewState, setMapViewState, selectedLocation, setSelectedLocation, defaultMapView}) {
     const [loaded, setLoaded] = useState(true);
     const [mapCenter, setMapCenter] = useState();

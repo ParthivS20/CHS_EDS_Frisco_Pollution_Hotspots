@@ -2,7 +2,13 @@ import React from "react";
 
 import Title from "../lib/Title";
 
-export default function SamplePage({title, children}) {
+
+interface Props {
+    title: string,
+    children?: string
+}
+
+export default function SamplePage(props: Props) {
     return (
         <div style={{
             display: "flex",
@@ -10,8 +16,8 @@ export default function SamplePage({title, children}) {
             alignItems: "center",
             height: '90vh'
         }}>
-            <Title title={title} />
-            <h1 style={{color:"white"}}>{children}</h1>
+            <Title title={props.title} />
+            <h1 style={{color:"white"}}>{props.children}</h1>
         </div>
     )
 
